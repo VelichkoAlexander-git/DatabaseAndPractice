@@ -9,27 +9,23 @@ SELECT prod.ProductName, supp.Country, prod.UnitPrice
 --+ Информацию о продуктах, чье количество в заказе более 100
 SELECT ProductName, Package, Quantity
 	FROM dbo.[OrderItem] AS item
-		LEFT OUTER JOIN dbo.Product AS prod ON item.ProductId = prod.Id
+		INNER JOIN dbo.Product AS prod ON item.ProductId = prod.Id
 		WHERE item.Quantity > 100
 
 --+ Информацию о заказах, имеющие от 1 до 3 позиций
 	SELECT OrderId, OrderNumber , COUNT(ProductId) AS Positions
 	FROM dbo.[Order] AS ord
-		LEFT OUTER JOIN dbo.[OrderItem] AS item ON ord.Id = item.OrderId
+		INNER JOIN dbo.[OrderItem] AS item ON ord.Id = item.OrderId
 	GROUP BY item.OrderId, OrderNumber
 	HAVING COUNT(ProductId) BETWEEN 1 and 3
 	ORDER BY OrderId
 
 -- Первые 10 самых ранних заказов от клиентов из Франции
-SELECT TOP(10) cust.FirstName, cust.LastName,cust.City,
-CASE WHEN MIN([order].OrderDate) IS NOT NULL
-	THEN MIN([order].OrderDate)
-	ELSE 0
-END AS CunstomerMinDateOrder
+SELECT TOP(10) FirstName, LastName, City, OrderDate, OrderNumber
 	FROM dbo.Customer AS cust
-	LEFT OUTER JOIN dbo.[Order] AS [order] ON [order].CustomerId = cust.Id
-	GROUP BY [order].CustomerId, cust.FirstName, cust.LastName, cust.City
-	ORDER BY CunstomerMinDateOrder
+	INNER JOIN dbo.[Order] AS [order] ON cust.Id = [order].Id
+	WHERE Country = 'France'
+	ORDER BY OrderDate
 
 -- Количество заказов по каждому клиенту(2 способа, через группировку и CROSS/OUTER APPLY), отсортировать по фамилии и имени клиента
 SELECT cust.FirstName, cust.LastName,
@@ -39,7 +35,7 @@ SELECT cust.FirstName, cust.LastName,
 	END AS CountOfOrder
 	FROM dbo.Customer AS cust
 		LEFT OUTER JOIN dbo.[Order] AS ord ON ord.CustomerId = cust.Id
-	GROUP BY ord.CustomerId, cust.FirstName, cust.LastName
+	GROUP BY cust.Id, cust.FirstName, cust.LastName
 
 SELECT cust.FirstName, cust.LastName,
 	CASE WHEN counts.CountOfOrder IS NOT NULL
