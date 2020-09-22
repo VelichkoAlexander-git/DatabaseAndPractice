@@ -1,0 +1,12 @@
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\bin\Debug\RecipeManager.exe.config
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\bin\Debug\RecipeManager.exe
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\bin\Debug\RecipeManager.pdb
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.csprojAssemblyReference.cache
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.Form1.resources
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.IngredientForm.resources
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.Properties.Resources.resources
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.csproj.GenerateResource.cache
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.csproj.CoreCompileInputs.cache
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.exe
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.pdb
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\RecipeManager\RecipeManager\obj\Debug\RecipeManager.AddIngredientForm.resources

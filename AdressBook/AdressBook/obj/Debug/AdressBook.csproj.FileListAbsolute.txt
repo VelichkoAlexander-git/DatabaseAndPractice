@@ -1,0 +1,33 @@
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\bin\Debug\AdressBook.exe.config
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\bin\Debug\AdressBook.exe
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\bin\Debug\AdressBook.pdb
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\obj\Debug\AdressBook.MainForm.resources
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\obj\Debug\AdressBook.Properties.Resources.resources
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\obj\Debug\AdressBook.csproj.GenerateResource.Cache
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\obj\Debug\AdressBook.exe
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\obj\Debug\AdressBook.pdb
+c:\users\дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\obj\Debug\AdressBook.addForm.resources
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\AdressBook\AdressBook\obj\Debug\AdressBook.csprojResolveAssemblyReference.cache
+D:\123\AdressBook\AdressBook\bin\Debug\AdressBook.exe.config
+D:\123\AdressBook\AdressBook\obj\Debug\AdressBook.exe
+D:\123\AdressBook\AdressBook\obj\Debug\AdressBook.pdb
+D:\123\AdressBook\AdressBook\bin\Debug\AdressBook.exe
+D:\123\AdressBook\AdressBook\bin\Debug\AdressBook.pdb
+D:\123\AdressBook\AdressBook\obj\Debug\AdressBook.csprojResolveAssemblyReference.cache
+D:\123\AdressBook\AdressBook\obj\Debug\AdressBook.addForm.resources
+D:\123\AdressBook\AdressBook\obj\Debug\AdressBook.MainForm.resources
+D:\123\AdressBook\AdressBook\obj\Debug\AdressBook.Properties.Resources.resources
+D:\123\AdressBook\AdressBook\obj\Debug\AdressBook.csproj.GenerateResource.Cache
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\bin\Debug\AdressBook.exe.config
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\bin\Debug\AdressBook.exe
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\bin\Debug\AdressBook.pdb
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.csprojAssemblyReference.cache
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.addForm.resources
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.formLogin.resources
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.MainForm.resources
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.Properties.Resources.resources
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.csproj.GenerateResource.cache
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.csproj.CoreCompileInputs.cache
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.exe
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.pdb
+G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.telForm.resources
