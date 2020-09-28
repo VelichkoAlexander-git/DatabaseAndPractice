@@ -20,11 +20,17 @@ namespace RecipeManager
             _ingredient.Changed += _ingredient_Changed;
         }
 
-        public Recipe Recipe
+        public Recipe Recipe { get; protected set; }
+
+        private string SelectedGroup
         {
             get
             {
-                return new Recipe(txtDescription.Text, new Group(cmbGroup.SelectedItem.ToString()), _ingredient, txtSteps.Text);
+                if (cmbGroup.SelectedItem is null)
+                {
+                    return string.Empty;
+                }
+                return cmbGroup.SelectedItem.ToString();
             }
         }
 
@@ -59,6 +65,20 @@ namespace RecipeManager
             else
             {
                 _ingredient.Remove(lvwAddIngredients.SelectedIndices[0]);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e) {
+            var createResult = Recipe.Create(txtDescription.Text, new Group(SelectedGroup), _ingredient, txtSteps.Text);
+            if (!createResult.Succeeded)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Ошибка создания рецепта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Recipe = createResult.Value;
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
     }

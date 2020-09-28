@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\AdressBook",
+    "\\AdressBook\\AdressBook",
+    "\\AdressBook\\AdressBook\\Account",
+    "\\AdressBook\\AdressBook\\Person",
+    "\\Prim'sAlgorithmMaze",
+    "\\Prim'sAlgorithmMaze\\Prim'sAlgorithmMaze",
+    "\\RecipeManager",
+    "\\RecipeManager\\RecipeManager"
+  ],
+  "SelectedNode": "\\RecipeManager\\RecipeManager\\Result.cs",
+  "PreviewInSolutionExplorer": false
+}

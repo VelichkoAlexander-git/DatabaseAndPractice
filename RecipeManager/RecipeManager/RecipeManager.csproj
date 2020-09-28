@@ -70,6 +70,7 @@
     <Compile Include="Recipe.cs" />
     <Compile Include="IngredientContainer.cs" />
     <Compile Include="RecipeContainer.cs" />
+    <Compile Include="Result.cs" />
     <EmbeddedResource Include="AddIngredientForm.resx">
       <DependentUpon>AddIngredientForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,5 +102,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

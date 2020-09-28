@@ -31,3 +31,16 @@ G:\Study\Конспекты\4 курс\1 семестр\Практика (Гор
 G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.exe
 G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.pdb
 G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\Адресная книга\AdressBook\obj\Debug\AdressBook.telForm.resources
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\bin\Debug\AdressBook.exe.config
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\bin\Debug\AdressBook.exe
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\bin\Debug\AdressBook.pdb
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.csprojAssemblyReference.cache
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.addForm.resources
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.formLogin.resources
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.MainForm.resources
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.telForm.resources
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.Properties.Resources.resources
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.csproj.GenerateResource.cache
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.csproj.CoreCompileInputs.cache
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.exe
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\AdressBook\AdressBook\obj\Debug\AdressBook.pdb

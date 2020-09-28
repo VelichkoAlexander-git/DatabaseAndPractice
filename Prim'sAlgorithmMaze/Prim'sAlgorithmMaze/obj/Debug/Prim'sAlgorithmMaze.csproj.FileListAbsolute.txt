@@ -9,3 +9,14 @@ G:\Study\Конспекты\3 курс\2 семестр\Базы данных (�
 G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\bin\Debug\Troschuetz.Random.pdb
 G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\bin\Debug\Troschuetz.Random.xml
 G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.)\Практика\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\obj\Debug\Prim'sAlgorithmMaze.csproj.CopyComplete
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\bin\Debug\Prim'sAlgorithmMaze.exe.config
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\bin\Debug\Prim'sAlgorithmMaze.exe
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\bin\Debug\Prim'sAlgorithmMaze.pdb
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\bin\Debug\Troschuetz.Random.dll
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\bin\Debug\Troschuetz.Random.pdb
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\bin\Debug\Troschuetz.Random.xml
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\obj\Debug\Prim'sAlgorithmMaze.csprojAssemblyReference.cache
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\obj\Debug\Prim'sAlgorithmMaze.csproj.CoreCompileInputs.cache
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\obj\Debug\Prim'sAlgorithmMaze.csproj.CopyComplete
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\obj\Debug\Prim'sAlgorithmMaze.exe
+D:\StudentsProjectsFromUniversity\VelichkoAlexander\Prim'sAlgorithmMaze\Prim'sAlgorithmMaze\obj\Debug\Prim'sAlgorithmMaze.pdb
