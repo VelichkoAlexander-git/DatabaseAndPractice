@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipeManager
 {
-    class RecipeContainer
+    public class RecipeContainer
     {
         public event EventHandler Changed;
 

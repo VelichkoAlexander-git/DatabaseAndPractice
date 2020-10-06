@@ -12,11 +12,15 @@ namespace RecipeManager
 {
     public partial class Form1 : Form
     {
-        private RecipeContainer recipeContainer = new RecipeContainer();
+        private ObjectStorage _storage;
+
         public Form1()
         {
             InitializeComponent();
-            recipeContainer.Changed += RecipeContainer_Changed;
+
+            _storage = ObjectStorage.GetInstance();
+            _storage.GetRecipe().Changed += RecipeContainer_Changed;
+            RecipeContainer_Changed(this, new EventArgs());
             mainListView.ItemSelectionChanged += mainListView_ItemSelectionChanged;
         }
 
@@ -32,35 +36,35 @@ namespace RecipeManager
             int index = mainListView.SelectedIndices[0];
 
             listView1.Items.Clear();
-            for (int i = 0; i < recipeContainer[index].Ingredients.Count(); i++)
+            for (int i = 0; i < _storage.GetRecipe()[index].Ingredients.Count(); i++)
             {
                 listView1.Items.Add(new ListViewItem(new string[] {
-                    recipeContainer[index].Ingredients[i].Name}));
+                    _storage.GetRecipe()[index].Ingredients[i].Name}));
             }
 
             listView2.Items.Clear();
             listView2.Items.Add(new ListViewItem(new string[] {
-                    recipeContainer[index].RecipeSteps}));
+                    _storage.GetRecipe()[index].RecipeSteps}));
         }
 
         private void RecipeContainer_Changed(object sender, EventArgs e)
         {
             mainListView.Items.Clear();
 
-            for (int i = 0; i < recipeContainer.Count(); i++)
+            for (int i = 0; i < _storage.GetRecipe().Count(); i++)
             {
                 mainListView.Items.Add(new ListViewItem(new string[] { 
-                    recipeContainer[i].Description,
-                    recipeContainer[i].Group.Name}));
+                    _storage.GetRecipe()[i].Description,
+                    _storage.GetRecipe()[i].Group.Name}));
             }
         }
         private void addButton_Click(object sender, System.EventArgs e)
         {
-            IngredientForm addForm = new IngredientForm();
+            IngredientForm addForm = new IngredientForm(_storage);
             addForm.ShowDialog();
 
             if (addForm.DialogResult == System.Windows.Forms.DialogResult.OK)
-                recipeContainer.Add(addForm.Recipe);
+                _storage.GetRecipe().Add(addForm.Recipe);
         }
 
 
@@ -74,7 +78,7 @@ namespace RecipeManager
             }
             else
             {
-                recipeContainer.Remove(mainListView.SelectedIndices[0]);
+                _storage.GetRecipe().Remove(mainListView.SelectedIndices[0]);
             }
         }
     }

@@ -22,3 +22,15 @@ D:\StudentsProjectsFromUniversity\VelichkoAlexander\RecipeManager\RecipeManager\
 D:\StudentsProjectsFromUniversity\VelichkoAlexander\RecipeManager\RecipeManager\obj\Debug\RecipeManager.csproj.CoreCompileInputs.cache
 D:\StudentsProjectsFromUniversity\VelichkoAlexander\RecipeManager\RecipeManager\obj\Debug\RecipeManager.exe
 D:\StudentsProjectsFromUniversity\VelichkoAlexander\RecipeManager\RecipeManager\obj\Debug\RecipeManager.pdb
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\bin\Debug\RecipeManager.exe.config
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\bin\Debug\RecipeManager.exe
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\bin\Debug\RecipeManager.pdb
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.csprojAssemblyReference.cache
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.AddIngredientForm.resources
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.Form1.resources
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.IngredientForm.resources
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.Properties.Resources.resources
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.csproj.GenerateResource.cache
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.csproj.CoreCompileInputs.cache
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.exe
+C:\Users\Kerman\Desktop\DatabaseAndPractice\RecipeManager\RecipeManager\obj\Debug\RecipeManager.pdb

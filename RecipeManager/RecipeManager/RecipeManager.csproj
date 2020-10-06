@@ -65,6 +65,7 @@
     <Compile Include="IngredientForm.Designer.cs">
       <DependentUpon>IngredientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectStorage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />

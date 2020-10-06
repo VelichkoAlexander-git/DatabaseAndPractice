@@ -12,9 +12,12 @@ namespace RecipeManager
 {
     public partial class IngredientForm : Form
     {
+        private ObjectStorage _storage;
+
         private IngredientContainer _ingredient;
-        public IngredientForm()
+        public IngredientForm(ObjectStorage storage)
         {
+            _storage = storage;
             InitializeComponent();
             _ingredient = new IngredientContainer();
             _ingredient.Changed += _ingredient_Changed;
@@ -46,7 +49,7 @@ namespace RecipeManager
 
         private void addButton_Click(object sender, System.EventArgs e)
         {
-            AddIngredientForm formIngr = new AddIngredientForm();
+            AddIngredientForm formIngr = new AddIngredientForm(_storage.GetIngredient());
             formIngr.ShowDialog();
 
             if (formIngr.DialogResult == System.Windows.Forms.DialogResult.OK)

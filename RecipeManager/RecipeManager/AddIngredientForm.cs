@@ -7,18 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static RecipeManager.Form1;
 
 namespace RecipeManager
 {
     public partial class AddIngredientForm : Form
     {
-        public AddIngredientForm()
+        private IngredientContainer _ingredients;
+
+        public AddIngredientForm(IngredientContainer container)
         {
+            
             InitializeComponent();
-            listView1.Items.Add("234");
-            listView1.Items.Add("24");
-            listView1.Items.Add("4");
-            listView1.Items.Add("222");
+            _ingredients = container;
+            ListOutput(_ingredients);
+        }
+
+        private void ListOutput(IngredientContainer container)
+        {
+            for (int i = 0; i < container.Count(); i++)
+            {
+                listView1.Items.Add(container[i].Name);
+            }
         }
 
         public Ingredient Ingredient
@@ -32,8 +42,7 @@ namespace RecipeManager
                 else
                 {
                     int index = listView1.SelectedIndices[0];
-                    //telForm telForm = new telForm(_telephoneContainer[index]);
-                    return new Ingredient(listView1.SelectedItems[0].Text);
+                    return _ingredients[index];
                 }
             }
         }
