@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.Xml.Serialization;
+using System.IO;
+using System.Runtime.Serialization;
 
 namespace RecipeManager
 {
@@ -35,10 +39,11 @@ namespace RecipeManager
             _recipe.Add(res.Value);
             
         }
+
         #endregion
 
-
         private IngredientContainer _ingredient;
+
         private RecipeContainer _recipe;
 
         public RecipeContainer GetRecipe()

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace RecipeManager
 {
@@ -19,10 +22,40 @@ namespace RecipeManager
             InitializeComponent();
 
             _storage = ObjectStorage.GetInstance();
+            //XmlDeserialize();
+
             _storage.GetRecipe().Changed += RecipeContainer_Changed;
             RecipeContainer_Changed(this, new EventArgs());
             mainListView.ItemSelectionChanged += mainListView_ItemSelectionChanged;
         }
+
+        #region XmlCteatAndLoad
+        string filePath = ConfigurationManager.AppSettings["recipesFileName"];
+        private XmlSerializer xml;
+
+        public void XmlSerialization()
+        {
+            using (StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.Default))
+            {
+                new XmlSerializer(typeof(RecipeContainer)).Serialize(sw, _storage.GetRecipe());
+                //xml = new XmlSerializer(typeof(RecipeContainer));
+                //xml.Serialize(sw, _storage.GetRecipe());
+            }
+        }
+
+        public void XmlDeserialize()
+        {
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                _storage = (ObjectStorage)xml.Deserialize(sr);
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            XmlSerialization();
+        }
+        #endregion
 
         private void mainListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
@@ -53,7 +86,7 @@ namespace RecipeManager
 
             for (int i = 0; i < _storage.GetRecipe().Count(); i++)
             {
-                mainListView.Items.Add(new ListViewItem(new string[] { 
+                mainListView.Items.Add(new ListViewItem(new string[] {
                     _storage.GetRecipe()[i].Description,
                     _storage.GetRecipe()[i].Group.Name}));
             }

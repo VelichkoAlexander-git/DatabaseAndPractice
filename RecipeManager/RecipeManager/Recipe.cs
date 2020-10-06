@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace RecipeManager
 {
-    public class Recipe
+    public class Recipe : ISerializable
     {
         public string Description { get; set; }
         public Group Group { get; set; }
@@ -40,6 +41,20 @@ namespace RecipeManager
         public override string ToString()
         {
             return string.Format($"Description : {Description}\nGroup : {Group}\nIngredients : {Ingredients}\nRecipeSteps : {RecipeSteps}");
+        }
+
+
+        public Recipe(SerializationInfo info, StreamingContext context)
+        {
+            this.Description = (string)info.GetValue("Description", typeof(string));
+            this.RecipeSteps = (string)info.GetValue("RecipeSteps", typeof(string));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Description", this.Description);
+            //info.AddValue("Group", this.Group);
+            info.AddValue("RecipeSteps", this.RecipeSteps);
         }
     }
 }

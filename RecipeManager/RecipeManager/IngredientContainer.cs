@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace RecipeManager
 {
+    [Serializable]
+    [XmlRoot(ElementName = "Ingredients")]
     public class IngredientContainer
     {
+        [XmlArrayItem("ListOfIngredient")]
         private List<Ingredient> _list;
 
         public event EventHandler Changed;
