@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace RecipeManager
 {
     [Serializable]
     public class Ingredient
     {
+        [XmlAttribute(AttributeName = "Name")]
         public string Name { get; set; }
 
         protected Ingredient(string name)
         {
             this.Name = name;
+        }
+
+        protected Ingredient()  // for serialization
+        {
+
         }
 
         public static Result<Ingredient> Create(string name)

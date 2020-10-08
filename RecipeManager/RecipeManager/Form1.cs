@@ -30,34 +30,37 @@ namespace RecipeManager
         }
 
         #region XmlCteatAndLoad
-        string filePath = ConfigurationManager.AppSettings["recipesFileName"];
-        private XmlSerializer xml;
+        //string filePath = ConfigurationManager.AppSettings["recipesFileName"];
+        //private XmlSerializer xml;
 
-        public void XmlSerialization()
-        {
-            using (StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.Default))
-            {
-                new XmlSerializer(typeof(RecipeContainer)).Serialize(sw, _storage.GetRecipe());
-                //xml = new XmlSerializer(typeof(RecipeContainer));
-                //xml.Serialize(sw, _storage.GetRecipe());
-            }
-        }
+        //public void XmlSerialization()
+        //{
+        //    using (StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.Default))
+        //    {
+        //        new XmlSerializer(typeof(RecipeContainer)).Serialize(sw, _storage.GetRecipe());
+        //        //xml = new XmlSerializer(typeof(RecipeContainer));
+        //        //xml.Serialize(sw, _storage.GetRecipe());
+        //    }
+        //}
 
-        public void XmlDeserialize()
-        {
-            using (StreamReader sr = new StreamReader(filePath))
-            {
-                _storage = (ObjectStorage)xml.Deserialize(sr);
-            }
-        }
+        //public void XmlDeserialize()
+        //{
+        //    using (StreamReader sr = new StreamReader(filePath))
+        //    {
+        //        _storage = (ObjectStorage)xml.Deserialize(sr);
+        //    }
+        //}
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            XmlSerialization();
+            //XmlSerialization();
+            string filePath = ConfigurationManager.AppSettings["recipesFileName"];
+            var manager = new RecipeDataManager(filePath);
+            manager.SaveData(ObjectStorage.GetInstance());
         }
-        #endregion
+    #endregion
 
-        private void mainListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+    private void mainListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             if (mainListView.SelectedItems.Count == 0)
             {

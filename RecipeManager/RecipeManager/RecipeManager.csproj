@@ -88,6 +88,7 @@
     <Compile Include="Recipe.cs" />
     <Compile Include="IngredientContainer.cs" />
     <Compile Include="RecipeContainer.cs" />
+    <Compile Include="RecipeDataManager.cs" />
     <Compile Include="Result.cs" />
     <EmbeddedResource Include="AddIngredientForm.resx">
       <DependentUpon>AddIngredientForm.cs</DependentUpon>

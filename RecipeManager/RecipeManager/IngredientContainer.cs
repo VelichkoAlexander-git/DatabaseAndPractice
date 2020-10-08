@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace RecipeManager
 {
     [Serializable]
     [XmlRoot(ElementName = "Ingredients")]
-    public class IngredientContainer
+    public class IngredientContainer : IEnumerable<Ingredient>
     {
         [XmlArrayItem("ListOfIngredient")]
         private List<Ingredient> _list;
@@ -68,6 +69,16 @@ namespace RecipeManager
         public int Count()
         {
             return _list.Count;
+        }
+
+        public IEnumerator<Ingredient> GetEnumerator()
+        {
+            return _list.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _list.GetEnumerator();
         }
     }
 }
