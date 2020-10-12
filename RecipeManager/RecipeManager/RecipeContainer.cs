@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,15 +9,21 @@ using System.Xml.Serialization;
 
 namespace RecipeManager
 {
-    public class RecipeContainer : ISerializable
+    [Serializable]
+    [XmlRoot(ElementName = "Recipes")]
+    public class RecipeContainer : IEnumerable<Recipe>
     {
         public event EventHandler Changed;
 
+        [XmlArrayItem("ListOfRecipe")]
         private List<Recipe> _list;
 
         public RecipeContainer(List<Recipe> RecipeList)
         {
             _list = RecipeList;
+        }
+        public RecipeContainer() : this(new List<Recipe>())
+        {
         }
 
         #region Serialize
@@ -30,10 +37,6 @@ namespace RecipeManager
             info.AddValue("Recipes", _list);
         }
         #endregion
-
-        public RecipeContainer() : this(new List<Recipe>())
-        {
-        }
 
         public Recipe this[int i]
         {
@@ -57,6 +60,16 @@ namespace RecipeManager
             return this;
         }
 
+        public RecipeContainer SetList(List<Recipe> list)
+        {
+            _list = list;
+
+            if (Changed != null) Changed(this, new EventArgs());
+
+            return this;
+        }
+
+
         public RecipeContainer Remove(Recipe recipe)
         {
             _list.Remove(recipe);
@@ -77,6 +90,16 @@ namespace RecipeManager
         public int Count()
         {
             return _list.Count;
+        }
+
+        public IEnumerator<Recipe> GetEnumerator()
+        {
+            return ((IEnumerable<Recipe>)_list).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)_list).GetEnumerator();
         }
     }
 }

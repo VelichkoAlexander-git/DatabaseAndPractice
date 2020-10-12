@@ -75,6 +75,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Group.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="IngredientForm.cs">
       <SubType>Form</SubType>

@@ -105,14 +105,15 @@
             // 
             // cmbGroup
             // 
+            this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroup.FormattingEnabled = true;
             this.cmbGroup.Items.AddRange(new object[] {
-            "Десерты",
-            "Основные блюда"});
+            ""});
             this.cmbGroup.Location = new System.Drawing.Point(90, 73);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(121, 21);
             this.cmbGroup.TabIndex = 4;
+            this.cmbGroup.UseWaitCursor = true;
             // 
             // lvwAddIngredients
             // 

@@ -25,16 +25,21 @@ namespace RecipeManager
         {
             _ingredient = new IngredientContainer();
             _recipe = new RecipeContainer();
+            _group = new List<Group>();
 
-            _ingredient.Add(Ingredient.Create("Мыло").Value);
-            _ingredient.Add(Ingredient.Create("Мясо").Value);
-            _ingredient.Add(Ingredient.Create("Печенье").Value);
+            _group.Add(Group.Create("Пусто").Value);
+            _group.Add(Group.Create("Десерты").Value);
+            _group.Add(Group.Create("Основные блюда").Value);
+
+            _ingredient.Add(Ingredient.Create("Курица").Value);
+            _ingredient.Add(Ingredient.Create("Говядина").Value);
+            _ingredient.Add(Ingredient.Create("Лук").Value);
 
             var res = Recipe.Create(
-                description: "ddd",
-                group: new Group("tmp"),
+                description: "КуриГов",
+                group: _group[2],
                 ingredients: new IngredientContainer(new List<Ingredient>() { _ingredient[0], _ingredient[1] }),
-                recipeSteps: "fff"
+                recipeSteps: "Без понятия"
                 );  
             _recipe.Add(res.Value);
             
@@ -46,6 +51,14 @@ namespace RecipeManager
 
         private RecipeContainer _recipe;
 
+        private List<Group> _group;
+
+        public void SetData(RecipeManagerData data)
+        {
+            _ingredient.SetList(data.Ingredients);
+            _recipe.SetList(data.Recipes);
+            _group = data.Groups;
+        }
         public RecipeContainer GetRecipe()
         {
             return _recipe;
@@ -54,6 +67,11 @@ namespace RecipeManager
         public IngredientContainer GetIngredient()
         {
             return _ingredient;
+        }
+
+        public List<Group> GetGroups()
+        {
+            return _group;
         }
 
     }

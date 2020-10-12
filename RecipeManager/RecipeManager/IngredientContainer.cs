@@ -26,6 +26,15 @@ namespace RecipeManager
         { 
         }
 
+        public IngredientContainer SetList(List<Ingredient> list)
+        {
+            _list = list;
+
+            if (Changed != null) Changed(this, new EventArgs());
+
+            return this;
+        }
+
         public Ingredient this[int i]
         {
             get

@@ -15,29 +15,34 @@ namespace RecipeManager
         private ObjectStorage _storage;
 
         private IngredientContainer _ingredient;
+
         public IngredientForm(ObjectStorage storage)
         {
             _storage = storage;
             InitializeComponent();
+            groupListCmb();
+
             _ingredient = new IngredientContainer();
-            _ingredient.Changed += _ingredient_Changed;
+            _ingredient.Changed += ingredient_Changed;
+
         }
 
         public Recipe Recipe { get; protected set; }
 
-        private string SelectedGroup
+        private Group SelectedGroup
         {
             get
             {
                 if (cmbGroup.SelectedItem is null)
                 {
-                    return string.Empty;
+                    return null;
                 }
-                return cmbGroup.SelectedItem.ToString();
+                int index = cmbGroup.SelectedIndex;
+                return _storage.GetGroups()[index];
             }
         }
 
-        private void _ingredient_Changed(object sender, EventArgs e)
+        private void ingredient_Changed(object sender, EventArgs e)
         {
             lvwAddIngredients.Items.Clear();
 
@@ -47,13 +52,22 @@ namespace RecipeManager
             }
         }
 
+        private void groupListCmb()
+        {
+            cmbGroup.Items.Clear();
+            foreach (var item in _storage.GetGroups())
+            {
+                cmbGroup.Items.Add(item.Name);
+            }
+        }
+
         private void addButton_Click(object sender, System.EventArgs e)
         {
             AddIngredientForm formIngr = new AddIngredientForm(_storage.GetIngredient());
             formIngr.ShowDialog();
 
             if (formIngr.DialogResult == System.Windows.Forms.DialogResult.OK)
-                if (formIngr.Ingredient != null)
+                if (formIngr.Ingredient != null && !_ingredient.Contains(formIngr.Ingredient))
                 _ingredient.Add(formIngr.Ingredient);
         }
 
@@ -72,7 +86,7 @@ namespace RecipeManager
         }
 
         private void btnSave_Click(object sender, EventArgs e) {
-            var createResult = Recipe.Create(txtDescription.Text, new Group(SelectedGroup), _ingredient, txtSteps.Text);
+            var createResult = Recipe.Create(txtDescription.Text, SelectedGroup, _ingredient, txtSteps.Text);
             if (!createResult.Succeeded)
             {
                 MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Ошибка создания рецепта", MessageBoxButtons.OK, MessageBoxIcon.Error);

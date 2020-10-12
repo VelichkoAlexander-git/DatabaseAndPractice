@@ -8,34 +8,30 @@ using System.Xml.Serialization;
 namespace RecipeManager
 {
     [Serializable]
-    public class Ingredient
+    public class Group
     {
         [XmlAttribute(AttributeName = "Name")]
         public string Name { get; set; }
 
-        protected Ingredient(string name)
+        protected Group(string name)
         {
-            this.Name = name;
+            Name = name;
         }
+        protected Group()
+        { }
 
-        protected Ingredient()
-        {
-
-        }
-
-        public static Result<Ingredient> Create(string name)
+        public static Result<Group> Create(string name)
         {
             var errors = new List<string>();
-            
-            if (string.IsNullOrEmpty(name)) { errors.Add("Название не может быть пустым"); }            
+
+            if (string.IsNullOrEmpty(name)) { errors.Add("Название не может быть пустым"); }
 
             if (errors.Any())
             {
-                return Result<Ingredient>.Fail(errors);
+                return Result<Group>.Fail(errors);
             }
-            return Result<Ingredient>.Success(new Ingredient(name));
+            return Result<Group>.Success(new Group(name));
         }
-
         public override string ToString()
         {
             return string.Format($"Name : {Name}");

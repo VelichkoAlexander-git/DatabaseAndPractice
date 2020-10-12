@@ -22,7 +22,7 @@ namespace RecipeManager
             InitializeComponent();
 
             _storage = ObjectStorage.GetInstance();
-            //XmlDeserialize();
+            Form1_Load();
 
             _storage.GetRecipe().Changed += RecipeContainer_Changed;
             RecipeContainer_Changed(this, new EventArgs());
@@ -30,37 +30,21 @@ namespace RecipeManager
         }
 
         #region XmlCteatAndLoad
-        //string filePath = ConfigurationManager.AppSettings["recipesFileName"];
-        //private XmlSerializer xml;
-
-        //public void XmlSerialization()
-        //{
-        //    using (StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.Default))
-        //    {
-        //        new XmlSerializer(typeof(RecipeContainer)).Serialize(sw, _storage.GetRecipe());
-        //        //xml = new XmlSerializer(typeof(RecipeContainer));
-        //        //xml.Serialize(sw, _storage.GetRecipe());
-        //    }
-        //}
-
-        //public void XmlDeserialize()
-        //{
-        //    using (StreamReader sr = new StreamReader(filePath))
-        //    {
-        //        _storage = (ObjectStorage)xml.Deserialize(sr);
-        //    }
-        //}
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //XmlSerialization();
             string filePath = ConfigurationManager.AppSettings["recipesFileName"];
             var manager = new RecipeDataManager(filePath);
             manager.SaveData(ObjectStorage.GetInstance());
         }
-    #endregion
+        private void Form1_Load()
+        {
+            string filePath = ConfigurationManager.AppSettings["recipesFileName"];
+            var manager = new RecipeDataManager(filePath);
+            manager.LoadData(ObjectStorage.GetInstance());
+        }
+        #endregion
 
-    private void mainListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void mainListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             if (mainListView.SelectedItems.Count == 0)
             {
@@ -118,17 +102,4 @@ namespace RecipeManager
             }
         }
     }
-
-
-    public class Group
-    {
-        public Group(string name)
-        {
-            Name = name;
-        }
-        public string Name { get; set; }
-    }
-
-
-
 }
