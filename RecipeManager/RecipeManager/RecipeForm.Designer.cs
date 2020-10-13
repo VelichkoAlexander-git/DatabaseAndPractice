@@ -1,6 +1,6 @@
 ﻿namespace RecipeManager
 {
-    partial class IngredientForm
+    partial class RecipeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
-            this.lvwAddIngredients = new System.Windows.Forms.ListView();
+            this.lvAddIngredients = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSteps = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -105,6 +105,7 @@
             // 
             // cmbGroup
             // 
+            this.cmbGroup.Cursor = System.Windows.Forms.Cursors.Default;
             this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroup.FormattingEnabled = true;
             this.cmbGroup.Items.AddRange(new object[] {
@@ -113,19 +114,23 @@
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(121, 21);
             this.cmbGroup.TabIndex = 4;
-            this.cmbGroup.UseWaitCursor = true;
             // 
-            // lvwAddIngredients
+            // lvAddIngredients
             // 
-            this.lvwAddIngredients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvAddIngredients.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
+            this.lvAddIngredients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.lvwAddIngredients.HideSelection = false;
-            this.lvwAddIngredients.Location = new System.Drawing.Point(283, 12);
-            this.lvwAddIngredients.Name = "lvwAddIngredients";
-            this.lvwAddIngredients.Size = new System.Drawing.Size(189, 232);
-            this.lvwAddIngredients.TabIndex = 5;
-            this.lvwAddIngredients.UseCompatibleStateImageBehavior = false;
-            this.lvwAddIngredients.View = System.Windows.Forms.View.Details;
+            this.lvAddIngredients.FullRowSelect = true;
+            this.lvAddIngredients.GridLines = true;
+            this.lvAddIngredients.HideSelection = false;
+            this.lvAddIngredients.Location = new System.Drawing.Point(283, 12);
+            this.lvAddIngredients.MultiSelect = false;
+            this.lvAddIngredients.Name = "lvAddIngredients";
+            this.lvAddIngredients.ShowGroups = false;
+            this.lvAddIngredients.Size = new System.Drawing.Size(189, 232);
+            this.lvAddIngredients.TabIndex = 5;
+            this.lvAddIngredients.UseCompatibleStateImageBehavior = false;
+            this.lvAddIngredients.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -199,7 +204,7 @@
             this.lvwIngred.UseCompatibleStateImageBehavior = false;
             this.lvwIngred.View = System.Windows.Forms.View.Details;
             // 
-            // IngredientForm
+            // RecipeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -210,14 +215,14 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtSteps);
-            this.Controls.Add(this.lvwAddIngredients);
+            this.Controls.Add(this.lvAddIngredients);
             this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "IngredientForm";
-            this.Text = "IngredientForm";
+            this.Name = "RecipeForm";
+            this.Text = "Recipe Create";
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -242,7 +247,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ListView lvwAddIngredients;
+        private System.Windows.Forms.ListView lvAddIngredients;
         private System.Windows.Forms.ListView lvwIngred;
     }
 }

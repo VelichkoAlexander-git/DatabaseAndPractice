@@ -25,24 +25,25 @@ namespace RecipeManager
         {
             _ingredient = new IngredientContainer();
             _recipe = new RecipeContainer();
-            _group = new List<Group>();
+            _group = new GroupContainer();
 
-            _group.Add(Group.Create("Пусто").Value);
+            /*
+            //_group.Add(Group.Create("Пусто").Value);
             _group.Add(Group.Create("Десерты").Value);
             _group.Add(Group.Create("Основные блюда").Value);
 
-            _ingredient.Add(Ingredient.Create("Курица").Value);
+            //_ingredient.Add(Ingredient.Create("Курица").Value);
             _ingredient.Add(Ingredient.Create("Говядина").Value);
             _ingredient.Add(Ingredient.Create("Лук").Value);
 
             var res = Recipe.Create(
                 description: "КуриГов",
-                group: _group[2],
+                group: _group[1],
                 ingredients: new IngredientContainer(new List<Ingredient>() { _ingredient[0], _ingredient[1] }),
                 recipeSteps: "Без понятия"
                 );  
             _recipe.Add(res.Value);
-            
+            */
         }
 
         #endregion
@@ -51,13 +52,13 @@ namespace RecipeManager
 
         private RecipeContainer _recipe;
 
-        private List<Group> _group;
+        private GroupContainer _group;
 
         public void SetData(RecipeManagerData data)
         {
             _ingredient.SetList(data.Ingredients);
             _recipe.SetList(data.Recipes);
-            _group = data.Groups;
+            _group.SetList(data.Groups);
         }
         public RecipeContainer GetRecipe()
         {
@@ -69,7 +70,7 @@ namespace RecipeManager
             return _ingredient;
         }
 
-        public List<Group> GetGroups()
+        public GroupContainer GetGroups()
         {
             return _group;
         }

@@ -29,6 +29,7 @@ namespace RecipeManager
 
         public bool SaveData(ObjectStorage storage)
         {
+            //обработать исключение
             var data = new RecipeManagerData
             {
                 Ingredients = storage.GetIngredient().ToList(),
@@ -50,6 +51,7 @@ namespace RecipeManager
         {
             if (!File.Exists($@"{_fileName}"))
             {
+                //убрать
                 OpenFileDialog openFile = new OpenFileDialog();
                 openFile.Filter = "Xml (*.dat)|*.dat|All Files (*.*)|*.*";
                 openFile.FilterIndex = 1;
@@ -66,7 +68,25 @@ namespace RecipeManager
                 using (var fileStream = new FileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     var serializer = new XmlSerializer(typeof(RecipeManagerData));
-                    storage.SetData((RecipeManagerData)serializer.Deserialize(fileStream));
+                    var starage = (RecipeManagerData)serializer.Deserialize(fileStream);
+
+                    List<Recipe> tmpRecipes = new List<Recipe>();
+                    foreach (var itemRecipe in starage.Recipes)
+                    {
+                        IngredientContainer ingredients = new IngredientContainer();
+                        Ingredient tmpIngredient;
+                        foreach (var itemIngredient in itemRecipe.Ingredients)
+                        {
+                            tmpIngredient = starage.Ingredients.FindLast(t => t.Name == itemIngredient.Name);
+                            ingredients.Add(tmpIngredient);
+                        }
+                        Group group = starage.Groups.FindLast(t => t.Name == itemRecipe.Group.Name);
+                        Recipe recipe = Recipe.Create(itemRecipe.Description, group, ingredients, itemRecipe.RecipeSteps).Value;
+                        tmpRecipes.Add(recipe);
+                    }
+                    starage.Recipes = tmpRecipes;
+
+                    storage.SetData(starage);
                 }
             }
 

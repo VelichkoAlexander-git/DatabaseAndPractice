@@ -10,13 +10,12 @@ using System.Windows.Forms;
 
 namespace RecipeManager
 {
-    public partial class IngredientForm : Form
+    public partial class RecipeForm : Form
     {
         private ObjectStorage _storage;
-
         private IngredientContainer _ingredient;
 
-        public IngredientForm(ObjectStorage storage)
+        public RecipeForm(ObjectStorage storage)
         {
             _storage = storage;
             InitializeComponent();
@@ -27,6 +26,16 @@ namespace RecipeManager
 
         }
 
+        public RecipeForm(ObjectStorage storage, Recipe recipe) : this (storage)
+        {
+            txtDescription.Text = recipe.Description; 
+            SelectedGroup = recipe.Group;
+            _ingredient = recipe.Ingredients;
+            _ingredient.Changed += ingredient_Changed;
+            ingredient_Changed(this, new EventArgs());
+            txtSteps.Text = recipe.RecipeSteps;
+        }
+
         public Recipe Recipe { get; protected set; }
 
         private Group SelectedGroup
@@ -35,20 +44,23 @@ namespace RecipeManager
             {
                 if (cmbGroup.SelectedItem is null)
                 {
-                    return null;
+                    return Group.Create(string.Empty).Value;
                 }
-                int index = cmbGroup.SelectedIndex;
-                return _storage.GetGroups()[index];
+                return _storage.GetGroups().ElementAt(cmbGroup.SelectedIndex);
+            }
+            set 
+            {
+                cmbGroup.SelectedIndex = _storage.GetGroups()[value];
             }
         }
 
         private void ingredient_Changed(object sender, EventArgs e)
         {
-            lvwAddIngredients.Items.Clear();
+            lvAddIngredients.Items.Clear();
 
             for (int i = 0; i < _ingredient.Count(); i++)
             {
-                lvwAddIngredients.Items.Add(new ListViewItem(new string[] { _ingredient[i].Name }));
+                lvAddIngredients.Items.Add(new ListViewItem(new string[] { _ingredient[i].Name }));
             }
         }
 
@@ -67,13 +79,13 @@ namespace RecipeManager
             formIngr.ShowDialog();
 
             if (formIngr.DialogResult == System.Windows.Forms.DialogResult.OK)
-                if (formIngr.Ingredient != null && !_ingredient.Contains(formIngr.Ingredient))
+                if (formIngr.Ingredient != null)
                 _ingredient.Add(formIngr.Ingredient);
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            if (lvwAddIngredients.SelectedItems.Count == 0)
+            if (lvAddIngredients.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Выберите хотя бы один эллемент из списка", "Ошибка удаления",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -81,7 +93,7 @@ namespace RecipeManager
             }
             else
             {
-                _ingredient.Remove(lvwAddIngredients.SelectedIndices[0]);
+                _ingredient.Remove(lvAddIngredients.SelectedIndices[0]);
             }
         }
 

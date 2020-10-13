@@ -9,24 +9,24 @@ using System.Xml.Serialization;
 namespace RecipeManager
 {
     [Serializable]
-    [XmlRoot(ElementName = "Ingredients")]
-    public class IngredientContainer : IEnumerable<Ingredient>
+    [XmlRoot(ElementName = "Groups")]
+    public class GroupContainer : IEnumerable<Group>
     {
-        [XmlArrayItem("ListOfIngredient")]
-        private List<Ingredient> _list;
+        [XmlArrayItem("ListOfGroup")]
+        private List<Group> _list;
 
         public event EventHandler Changed;
 
-        public IngredientContainer(List<Ingredient> IngredientList)
+        public GroupContainer(List<Group> Group)
         {
-            _list = IngredientList;
+            _list = Group;
         }
 
-        public IngredientContainer() : this(new List<Ingredient>())
+        public GroupContainer() : this(new List<Group>())
         {
         }
 
-        public IngredientContainer SetList(List<Ingredient> list)
+        public GroupContainer SetList(List<Group> list)
         {
             _list = list;
 
@@ -35,7 +35,7 @@ namespace RecipeManager
             return this;
         }
 
-        public Ingredient this[int i]
+        public Group this[int i]
         {
             get
             {
@@ -47,29 +47,27 @@ namespace RecipeManager
                 _list[i] = value;
             }
         }
-        public int this[Ingredient i]
+
+        public int this[Group i]
         {
             get
             {
                 return _list.IndexOf(i);
             }
         }
-
-        public IngredientContainer Add(Ingredient ingredient)
+        public GroupContainer Add(Group group)
         {
-            if (!_list.Contains(ingredient))
-                if (!_list.Any(i => i.Name == ingredient.Name))
-                {
-                    _list.Add(ingredient);
-                    if (Changed != null) Changed(this, new EventArgs());
-                }
 
+            if (!_list.Contains(group))
+                if (!_list.Any(i => i.Name == group.Name))
+                    _list.Add(group);
 
+            if (Changed != null) Changed(this, new EventArgs());
 
             return this;
         }
 
-        public IngredientContainer Edit(int index, string name)
+        public GroupContainer Edit(int index, string name)
         {
             if (!_list.Any(t => t.Name == name))
                 _list[index].Name = name;
@@ -79,16 +77,16 @@ namespace RecipeManager
             return this;
         }
 
-        public IngredientContainer Remove(Ingredient ingredient)
+        public GroupContainer Remove(Group group)
         {
-            _list.Remove(ingredient);
+            _list.Remove(group);
 
             if (Changed != null) Changed(this, new EventArgs());
 
             return this;
         }
 
-        public IngredientContainer Remove(int Index)
+        public GroupContainer Remove(int Index)
         {
             _list.RemoveAt(Index);
 
@@ -102,14 +100,14 @@ namespace RecipeManager
             return _list.Count;
         }
 
-        public IEnumerator<Ingredient> GetEnumerator()
+        public IEnumerator<Group> GetEnumerator()
         {
             return _list.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _list.GetEnumerator();
+            return ((IEnumerable)_list).GetEnumerator();
         }
     }
 }
