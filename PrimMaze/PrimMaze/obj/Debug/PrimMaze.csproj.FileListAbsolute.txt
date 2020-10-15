@@ -1,0 +1,10 @@
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\obj\Debug\PrimMaze.csprojAssemblyReference.cache
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\obj\Debug\PrimMaze.csproj.CoreCompileInputs.cache
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\bin\Debug\PrimMaze.exe.config
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\bin\Debug\PrimMaze.exe
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\bin\Debug\PrimMaze.pdb
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\bin\Debug\System.Numerics.Vectors.dll
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\bin\Debug\System.Numerics.Vectors.xml
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\obj\Debug\PrimMaze.csproj.CopyComplete
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\obj\Debug\PrimMaze.exe
+G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\obj\Debug\PrimMaze.pdb
