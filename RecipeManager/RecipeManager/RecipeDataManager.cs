@@ -29,7 +29,6 @@ namespace RecipeManager
 
         public bool SaveData(ObjectStorage storage)
         {
-            //обработать исключение
             var data = new RecipeManagerData
             {
                 Ingredients = storage.GetIngredient().ToList(),
@@ -37,6 +36,15 @@ namespace RecipeManager
                 Groups = storage.GetGroups().ToList()
             };
 
+            if (!File.Exists(_fileName))
+            {
+                SaveFileDialog saveFile = new SaveFileDialog();
+                saveFile.Filter = "Xml (*.dat)|*.dat|All Files (*.*)|*.*";
+                if (saveFile.ShowDialog() == DialogResult.OK)
+                {
+                    _fileName = saveFile.FileName;
+                }
+            }
             using (var stream = new FileStream(_fileName, FileMode.Create))
             {
                 var serializer = new XmlSerializer(typeof(RecipeManagerData));
