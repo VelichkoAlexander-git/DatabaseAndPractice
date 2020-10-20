@@ -89,16 +89,17 @@ namespace RecipeManager
             RecipeManagerData data = null;
             if (!File.Exists($@"{filePath}"))
             {
-                MessageBox.Show("File to download not found", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                OpenFileDialog openFile = new OpenFileDialog();
-                openFile.Filter = "Xml (*.dat)|*.dat|All Files (*.*)|*.*";
-                openFile.FilterIndex = 1;
-                if (openFile.ShowDialog() == DialogResult.OK)
+                DialogResult res = MessageBox.Show($"File '{filePath}' was not found. Would you like to load data from different location?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (res == DialogResult.Yes)
                 {
-                    filePath = openFile.FileName;
-                    data = RecipeDataManager.LoadData(filePath);
-
+                    OpenFileDialog openFile = new OpenFileDialog();
+                    openFile.Filter = "Xml (*.dat)|*.dat|All Files (*.*)|*.*";
+                    openFile.FilterIndex = 1;
+                    if (openFile.ShowDialog() == DialogResult.OK)
+                    {
+                        filePath = openFile.FileName;
+                        data = RecipeDataManager.LoadData(filePath);
+                    }
                 }
             }
             else
