@@ -17,88 +17,41 @@ namespace RecipeManager
         public List<Recipe> Recipes { get; set; }
     }
 
-    public class RecipeDataManager
+    public static class RecipeDataManager
     {
-
-        private string _fileName;
-
-        public RecipeDataManager(string fileName)
+        public static void SaveData(string path, RecipeManagerData storage)
         {
-            _fileName = fileName;
-        }
-
-        public bool SaveData(ObjectStorage storage)
-        {
-            var data = new RecipeManagerData
-            {
-                Ingredients = storage.GetIngredient().ToList(),
-                Recipes = storage.GetRecipe().ToList(),
-                Groups = storage.GetGroups().ToList()
-            };
-
-            if (!File.Exists(_fileName))
-            {
-                SaveFileDialog saveFile = new SaveFileDialog();
-                saveFile.Filter = "Xml (*.dat)|*.dat|All Files (*.*)|*.*";
-                if (saveFile.ShowDialog() == DialogResult.OK)
-                {
-                    _fileName = saveFile.FileName;
-                }
-            }
-            using (var stream = new FileStream(_fileName, FileMode.Create))
+            using (var stream = new FileStream(path, FileMode.Create))
             {
                 var serializer = new XmlSerializer(typeof(RecipeManagerData));
-                serializer.Serialize(stream, data);
+                serializer.Serialize(stream, storage);
             }
-
-
-            return true;
         }
 
-        public bool LoadData(ObjectStorage storage)
+        public static RecipeManagerData LoadData(string path)
         {
-            if (!File.Exists($@"{_fileName}"))
+            using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                //убрать
-                OpenFileDialog openFile = new OpenFileDialog();
-                openFile.Filter = "Xml (*.dat)|*.dat|All Files (*.*)|*.*";
-                openFile.FilterIndex = 1;
+                var serializer = new XmlSerializer(typeof(RecipeManagerData));
+                var starage = (RecipeManagerData)serializer.Deserialize(fileStream);
 
-                if (openFile.ShowDialog() == DialogResult.OK)
+                List<Recipe> tmpRecipes = new List<Recipe>();
+                foreach (var itemRecipe in starage.Recipes)
                 {
-                    ConfigurationManager.AppSettings["recipesFileName"] = openFile.FileName;
-                    _fileName = openFile.FileName;
-                    LoadData(storage);
-                }
-            }
-            else
-            {
-                using (var fileStream = new FileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var serializer = new XmlSerializer(typeof(RecipeManagerData));
-                    var starage = (RecipeManagerData)serializer.Deserialize(fileStream);
-
-                    List<Recipe> tmpRecipes = new List<Recipe>();
-                    foreach (var itemRecipe in starage.Recipes)
+                    IngredientContainer ingredients = new IngredientContainer();
+                    Ingredient tmpIngredient;
+                    foreach (var itemIngredient in itemRecipe.Ingredients)
                     {
-                        IngredientContainer ingredients = new IngredientContainer();
-                        Ingredient tmpIngredient;
-                        foreach (var itemIngredient in itemRecipe.Ingredients)
-                        {
-                            tmpIngredient = starage.Ingredients.FindLast(t => t.Name == itemIngredient.Name);
-                            ingredients.Add(tmpIngredient);
-                        }
-                        Group group = starage.Groups.FindLast(t => t.Name == itemRecipe.Group.Name);
-                        Recipe recipe = Recipe.Create(itemRecipe.Description, group, ingredients, itemRecipe.RecipeSteps).Value;
-                        tmpRecipes.Add(recipe);
+                        tmpIngredient = starage.Ingredients.FindLast(t => t.Name == itemIngredient.Name);
+                        ingredients.Add(tmpIngredient);
                     }
-                    starage.Recipes = tmpRecipes;
-
-                    storage.SetData(starage);
+                    Group group = starage.Groups.FindLast(t => t.Name == itemRecipe.Group.Name);
+                    Recipe recipe = Recipe.Create(itemRecipe.Description, group, ingredients, itemRecipe.RecipeSteps).Value;
+                    tmpRecipes.Add(recipe);
                 }
+                starage.Recipes = tmpRecipes;
+                return starage;
             }
-
-            return true;
         }
     }
 }

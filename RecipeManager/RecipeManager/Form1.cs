@@ -15,6 +15,18 @@ namespace RecipeManager
 {
     public partial class Form1 : Form
     {
+        private string filePath
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["recipesFileName"];
+            }
+            set
+            {
+                ConfigurationManager.AppSettings["recipesFileName"] = value;
+            }
+        }
+
         private ObjectStorage _storage;
 
         public Form1()
@@ -22,7 +34,6 @@ namespace RecipeManager
             InitializeComponent();
 
             _storage = ObjectStorage.GetInstance();
-            Form1_Load();
 
             _storage.GetRecipe().Changed += RecipeContainer_Changed;
             _storage.GetIngredient().Changed += IngredientContainer_Changed;
@@ -42,15 +53,60 @@ namespace RecipeManager
         #region XmlCteatAndLoad
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string filePath = ConfigurationManager.AppSettings["recipesFileName"];
-            var manager = new RecipeDataManager(filePath);
-            manager.SaveData(ObjectStorage.GetInstance());
+            DialogResult res = MessageBox.Show("Save this file?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            switch (res)
+            {
+                case DialogResult.Yes:
+                    var data = new RecipeManagerData
+                    {
+                        Ingredients = _storage.GetIngredient().ToList(),
+                        Recipes = _storage.GetRecipe().ToList(),
+                        Groups = _storage.GetGroups().ToList()
+                    };
+
+                    if (!File.Exists(filePath))
+                    {
+                        SaveFileDialog saveFile = new SaveFileDialog();
+                        saveFile.Filter = "Xml (*.dat)|*.dat|All Files (*.*)|*.*";
+                        if (saveFile.ShowDialog() == DialogResult.OK)
+                        {
+                            filePath = saveFile.FileName;
+                            RecipeDataManager.SaveData(filePath, data);
+                        }
+                    }
+                    else
+                    {
+                        RecipeDataManager.SaveData(filePath, data);
+                    }
+                    break;
+                case DialogResult.No:
+                    break;
+            }
         }
-        private void Form1_Load()
+
+        private void Form1_Load(object sender, EventArgs e)
         {
-            string filePath = ConfigurationManager.AppSettings["recipesFileName"];
-            var manager = new RecipeDataManager(filePath);
-            manager.LoadData(ObjectStorage.GetInstance());
+            RecipeManagerData data = null;
+            if (!File.Exists($@"{filePath}"))
+            {
+                MessageBox.Show("File to download not found", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                OpenFileDialog openFile = new OpenFileDialog();
+                openFile.Filter = "Xml (*.dat)|*.dat|All Files (*.*)|*.*";
+                openFile.FilterIndex = 1;
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFile.FileName;
+                    data = RecipeDataManager.LoadData(filePath);
+
+                }
+            }
+            else
+            {
+                data = RecipeDataManager.LoadData(filePath);
+            }
+
+            _storage.SetData(data);
         }
         #endregion
 
@@ -163,7 +219,15 @@ namespace RecipeManager
 
         private void btnAddIngr_Click(object sender, System.EventArgs e)
         {
-            _storage.GetIngredient().Add(Ingredient.Create(txtNameIngr.Text).Value);
+            var createResult = Ingredient.Create(txtNameIngr.Text);
+            if (!createResult.Succeeded)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Ошибка создания ингредиента", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                _storage.GetIngredient().Add(createResult.Value);
+            }
         }
 
         private void btnDeleteIngr_Click(object sender, EventArgs e)
@@ -176,7 +240,18 @@ namespace RecipeManager
             }
             else
             {
-                _storage.GetIngredient().Remove(lvIngredient.SelectedIndices[0]);
+                int index = lvIngredient.SelectedIndices[0];
+                if (!CheckingRecipeForAnIngredient(_storage.GetIngredient()[index]))
+                {
+                    _storage.GetIngredient().Remove(index);
+                }
+                else
+                {
+                    MessageBox.Show("Этот ингредиент находится в рецепте", "Ошибка удаления",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
             }
         }
 
@@ -191,7 +266,7 @@ namespace RecipeManager
             else
             {
                 int index = lvIngredient.SelectedIndices[0];
-                _storage.GetIngredient().Edit(index,txtNameIngr.Text);
+                _storage.GetIngredient().Edit(index, txtNameIngr.Text);
             }
         }
         #endregion
@@ -221,7 +296,15 @@ namespace RecipeManager
 
         private void btnAddGrou_Click(object sender, System.EventArgs e)
         {
-            _storage.GetGroups().Add(Group.Create(txtNameGrou.Text).Value);
+            var createResult = Group.Create(txtNameGrou.Text);
+            if (!createResult.Succeeded)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Ошибка создания группы", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                _storage.GetGroups().Add(createResult.Value);
+            }
         }
 
         private void btnDeleteGrou_Click(object sender, EventArgs e)
@@ -234,7 +317,17 @@ namespace RecipeManager
             }
             else
             {
-                _storage.GetGroups().Remove(lvGroup.SelectedIndices[0]);
+                int index = lvGroup.SelectedIndices[0];
+                if (!CheckingRecipeForAnGroup(_storage.GetGroups()[index]))
+                {
+                    _storage.GetGroups().Remove(index);
+                }
+                else
+                {
+                    MessageBox.Show("Эта группа находится в рецепте", "Ошибка удаления",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
         }
 
@@ -253,5 +346,19 @@ namespace RecipeManager
             }
         }
         #endregion
+
+        private bool CheckingRecipeForAnGroup(Group group)
+        {
+            return _storage.GetRecipe().Any(r => r.Group.Name == group.Name);
+        }
+        private bool CheckingRecipeForAnIngredient(Ingredient ingredient)
+        {
+            foreach (var recipe in _storage.GetRecipe())
+            {
+                if (recipe.Ingredients.Any(i => i.Name == ingredient.Name)) return true;
+            }
+            return false;
+        }
+
     }
 }

@@ -56,9 +56,12 @@ namespace RecipeManager
 
         public void SetData(RecipeManagerData data)
         {
-            _ingredient.SetList(data.Ingredients);
-            _recipe.SetList(data.Recipes);
-            _group.SetList(data.Groups);
+            if (data != null)
+            {
+                _ingredient.SetList(data.Ingredients);
+                _recipe.SetList(data.Recipes);
+                _group.SetList(data.Groups); 
+            }
         }
         public RecipeContainer GetRecipe()
         {
