@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -17,21 +18,49 @@ namespace PrimMaze
 {
     class Program
     {
+        public static int height;
+        public static int width;
+        public static int interval;
+
         static Timer timer;
         static void Main(string[] args)
         {
+            var parser = ParserValue();
+            if (!parser.Succeeded)
+            {
+                Console.WriteLine(String.Join(Environment.NewLine, parser.Errors));
+                Console.ReadLine();
+                return;
+            }
+
             Console.OutputEncoding = System.Text.Encoding.GetEncoding(1252);
 
-            int interval = 2000;
-
             string path = @"G:\";
-            Maze maze = new Maze(10, 10);
+            Maze maze = new Maze(width, height);
             SaveArrayInFile(Сonversion(maze), path + "maze.txt");
             SaveArrayInPNG(Сonversion(maze), path + "maze.png");
             timer = new Timer(new TimerCallback(Drawing), maze, 0, interval);
 
             Console.ReadLine();
         }
+
+        #region Parser
+        public static Result<bool> ParserValue()
+        {
+            var errors = new List<string>();
+
+            if (!int.TryParse(ConfigurationManager.AppSettings["HeightMap"], out height)) { errors.Add("Поле HeightMap не удалось преобразовать в int"); }
+            if (!int.TryParse(ConfigurationManager.AppSettings["WidthMap"], out width)) { errors.Add("Поле WidthMap не удалось преобразовать в int"); }
+            if (!int.TryParse(ConfigurationManager.AppSettings["Interval"], out interval)) { errors.Add("Поле Interval не удалось преобразовать в int"); }
+
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
+
+            return Result<bool>.Success(true);
+        }
+        #endregion
 
         public static void Drawing(Object maze)
         {
@@ -132,5 +161,7 @@ namespace PrimMaze
             bmp.Save(path, ImageFormat.Png);
             bmp.Dispose();
         }
+
+
     }
 }

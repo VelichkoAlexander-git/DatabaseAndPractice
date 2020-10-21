@@ -8,3 +8,13 @@ G:\Study\Конспекты\3 курс\2 семестр\Базы данных (�
 G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\obj\Debug\PrimMaze.csproj.CopyComplete
 G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\obj\Debug\PrimMaze.exe
 G:\Study\Конспекты\3 курс\2 семестр\Базы данных (Горб Е.А.) +;-\Практика\PrimMaze\PrimMaze\obj\Debug\PrimMaze.pdb
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\bin\Debug\PrimMaze.exe.config
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\bin\Debug\PrimMaze.exe
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\bin\Debug\PrimMaze.pdb
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\obj\Debug\PrimMaze.csprojAssemblyReference.cache
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\obj\Debug\PrimMaze.csproj.CoreCompileInputs.cache
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\obj\Debug\PrimMaze.csproj.CopyComplete
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\obj\Debug\PrimMaze.exe
+C:\Users\Kerman\Desktop\DatabaseAndPractice\PrimMaze\PrimMaze\obj\Debug\PrimMaze.pdb

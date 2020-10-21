@@ -17,6 +17,7 @@ namespace ForestFireModel
         public static float p;
         public static int height;
         public static int width;
+        public static int interval;
 
         private static Timer timer;
         private Encoding ascii = Encoding.ASCII;
@@ -28,9 +29,7 @@ namespace ForestFireModel
                 Console.WriteLine(String.Join(Environment.NewLine, parser.Errors));
                 Console.ReadLine();
                 return;
-            }           
-
-            long interval = 2000;
+            }
 
             ForestModel model;
             var createResult = ForestModel.Create(f, p, height, width);
@@ -48,58 +47,25 @@ namespace ForestFireModel
             Console.ReadLine();
         }
 
-        #region Parser
         public static Result<bool> ParserValue()
         {
+            IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
+
             var errors = new List<string>();
 
-            if (!IsDigitsOnlyAndPoint(ConfigurationManager.AppSettings["WoodFireRisk"])) { errors.Add("Поле WoodFireRisk не удалось преобразовать в float"); }
-            if (!IsDigitsOnlyAndPoint(ConfigurationManager.AppSettings["FillingWithWood"])) { errors.Add("Поле FillingWithWood  не удалось преобразовать в float"); }
-            if (!IsDigitsOnly(ConfigurationManager.AppSettings["HeightMap"])) { errors.Add("Поле HeightMap не удалось преобразовать в int"); }
-            if (!IsDigitsOnly(ConfigurationManager.AppSettings["WidthMap"])) { errors.Add("Поле WidthMap не удалось преобразовать в int"); }
+            if (!float.TryParse(ConfigurationManager.AppSettings["WoodFireRisk"], NumberStyles.Float, formatter, out f)) { errors.Add("Поле WoodFireRisk не удалось преобразовать в float"); }
+            if (!float.TryParse(ConfigurationManager.AppSettings["FillingWithWood"],NumberStyles.Float,formatter,out p)) { errors.Add("Поле FillingWithWood  не удалось преобразовать в float"); }
+            if (!int.TryParse(ConfigurationManager.AppSettings["HeightMap"],out height)) { errors.Add("Поле HeightMap не удалось преобразовать в int"); }
+            if (!int.TryParse(ConfigurationManager.AppSettings["WidthMap"], out width)) { errors.Add("Поле WidthMap не удалось преобразовать в int"); }
+            if (!int.TryParse(ConfigurationManager.AppSettings["Interval"], out interval)) { errors.Add("Поле Interval не удалось преобразовать в int"); }
 
             if (errors.Any())
             {
                 return Result<bool>.Fail(errors);
             }
 
-            CultureInfo ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-            ci.NumberFormat.CurrencyDecimalSeparator = ".";
-
-            f = float.Parse(ConfigurationManager.AppSettings["WoodFireRisk"], NumberStyles.Any, ci);
-            p = float.Parse(ConfigurationManager.AppSettings["FillingWithWood"], NumberStyles.Any, ci);
-            height = int.Parse(ConfigurationManager.AppSettings["HeightMap"]);
-            width = int.Parse(ConfigurationManager.AppSettings["WidthMap"]);
-
             return Result<bool>.Success(true);
         }
-
-        private static bool IsDigitsOnly(string str)
-        {
-            foreach (char c in str)
-            {
-                if (c < '0' || c > '9')
-                    return false;
-            }
-
-            return true;
-        }
-
-        private static bool IsDigitsOnlyAndPoint(string str)
-        {
-            if (str.Where(c => c == '.').Count() > 1) return false;
-            else
-                str = str.Replace(".", "");
-
-            foreach (char c in str)
-            {
-                if (c < '0' || c > '9')
-                    return false;
-            }
-
-            return true;
-        }
-        #endregion
 
         public static void Drawing(Object model)
         {
