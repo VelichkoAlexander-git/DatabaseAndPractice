@@ -37,8 +37,12 @@ namespace PrimMaze
 
             string path = @"G:\";
             Maze maze = new Maze(width, height);
+
+            maze.Prims(true);
             SaveArrayInFile(Сonversion(maze), path + "maze.txt");
             SaveArrayInPNG(Сonversion(maze), path + "maze.png");
+
+            maze.Restart_Prim();
             timer = new Timer(new TimerCallback(Drawing), maze, 0, interval);
 
             Console.ReadLine();
@@ -64,10 +68,10 @@ namespace PrimMaze
 
         public static void Drawing(Object maze)
         {
-            Maze maze_t = (Maze)maze;
+            var mazes = (Maze)maze;
             Console.Clear();
 
-            var charZame = Сonversion(maze_t);
+            var charZame = Сonversion(mazes);
 
             for (int i = 0; i < charZame.GetLength(0); i++)
             {
@@ -81,12 +85,12 @@ namespace PrimMaze
                 }
             }
 
-            //step...
+            mazes.Prims(false);
         }
 
         public static int[,] Сonversion(Maze maze)
         {
-            int[,] matrix = new int[(maze.GetWidth() << 1) + 1, (maze.GetLength() << 1) + 1];
+            int[,] matrix = new int[(maze.GetHeight() << 1) + 1, (maze.GetWidth() << 1) + 1];
 
             for (int i = 0; i < matrix.GetLength(0); i = i + 2)
             {
@@ -161,7 +165,5 @@ namespace PrimMaze
             bmp.Save(path, ImageFormat.Png);
             bmp.Dispose();
         }
-
-
     }
 }

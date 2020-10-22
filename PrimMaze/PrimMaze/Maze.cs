@@ -9,26 +9,22 @@ namespace PrimMaze
     public class Maze
     {
         private int WIDTH;
-        private int LENGTH;
+        private int HEIGHT;
         private Cell[,] maze;
-        private Cell start;
+        private Cell current;
 
-        private Dictionary<Cell, List<int>> wallMap = new Dictionary<Cell, List<int>>();
-        private Random rand = new Random();
-        private List<Cell> keyList = new List<Cell>();
+        private Dictionary<Cell, List<int>> wallMap;
+        private Random rand;
+        private List<Cell> keyList;
 
         #region BASIC MAZE CONSTRUCTION
-        public Maze(int width, int length)
+        public Maze(int width, int height)
         {
             this.WIDTH = width;
-            this.LENGTH = length;
-            maze = new Cell[WIDTH, LENGTH];
+            this.HEIGHT = height;
+            maze = new Cell[HEIGHT, WIDTH];
 
-            Random rand = new Random();
-            start = new Cell(rand.Next(0, WIDTH - 1), rand.Next(0, LENGTH - 1));
-            generateMaze();
-
-            //prims(start);
+            Restart_Prim();
         }
 
         public Cell[,] getMaze()
@@ -41,16 +37,16 @@ namespace PrimMaze
             return WIDTH;
         }
 
-        public int GetLength()
+        public int GetHeight()
         {
-            return LENGTH;
+            return HEIGHT;
         }
 
         public void generateMaze()
         {
-            for (int i = 0; i < WIDTH; ++i)
+            for (int i = 0; i < HEIGHT; ++i)
             {
-                for (int j = 0; j < LENGTH; ++j)
+                for (int j = 0; j < WIDTH; ++j)
                 {
                     maze[i, j] = new Cell(i, j);
                 }
@@ -58,24 +54,25 @@ namespace PrimMaze
         }
         #endregion
 
-        #region PRIMS ALGORITHM
-        private void prims(Cell root)
-        {            
-            List<int> foundWalls = findWalls(root);
-            
+        public void Restart_Prim()
+        {
+            wallMap = new Dictionary<Cell, List<int>>();
+            rand = new Random();
+            keyList = new List<Cell>();
+            generateMaze();
+            current = maze[rand.Next(HEIGHT - 1), rand.Next(WIDTH - 1)];
+
+            List<int> foundWalls = findWalls(current);
             if (foundWalls.Count() > 0)
             {
-                wallMap[root] = foundWalls;
+                wallMap[current] = findWalls(current);
+                keyList.Add(current);
             }
-            foreach (Cell key in wallMap.Keys)
-            {
-                keyList.Add(key);
-            }
-            
-            int index = rand.Next(keyList.Count());
-            Cell current = keyList[index];
+        }
 
-
+        #region PRIMS ALGORITHM
+        public void Prims(bool flag)
+        {
             while (wallMap.Any())
             {
                 current.setVisited(true);
@@ -89,27 +86,30 @@ namespace PrimMaze
                     nextCell.setVisited(true);
                     List<int> w = findWalls(nextCell);
                     if (w.Count() > 0 && !keyList.Contains(nextCell))
-                    { 
+                    {
                         keyList.Add(nextCell);
                         wallMap[nextCell] = w;
                     }
 
                 }
 
-                walls.Remove((int)location); 
+                walls.Remove((int)location);
                 if (walls.Count() == 0)
-                { 
+                {
                     wallMap.Remove(current);
                     keyList.Remove(current);
 
                     if (keyList.Count() == 0)
                     {
-                        break;
+                        return;
                     }
                 }
-                index = rand.Next(keyList.Count());
+
+                int index = rand.Next(keyList.Count());
                 current = keyList[index];
-            }
+
+                if (!flag) break;
+            } 
         }
 
         private List<int> findWalls(Cell curr)
@@ -117,7 +117,7 @@ namespace PrimMaze
             List<int> walls = new List<int>();
             if (curr != null)
             {
-                Cell[] n = findPrimsNeighbors(curr.getX(), curr.getY()); 
+                Cell[] n = findPrimsNeighbors(curr.getY(), curr.getX());
 
                 if (n[0] != null)
                 {
@@ -143,41 +143,41 @@ namespace PrimMaze
         {
             if (location == 0)
             {
-                return maze[curr.getX() - 1, curr.getY()].getVisited();
+                return maze[curr.getY(), curr.getX() - 1].getVisited();
             }
             else if (location == 1)
             {
-                return maze[curr.getX(), curr.getY() - 1].getVisited();
+                return maze[curr.getY() + 1, curr.getX()].getVisited();
             }
             else if (location == 2)
             {
-                return maze[curr.getX() + 1, curr.getY()].getVisited();
+                return maze[curr.getY(), curr.getX() + 1].getVisited();
             }
             else if (location == 3)
             {
-                return maze[curr.getX(), curr.getY() + 1].getVisited();
+                return maze[curr.getY() - 1, curr.getX()].getVisited();
             }
             return true;
         }
 
-        private Cell[] findPrimsNeighbors(int x, int y)
+        private Cell[] findPrimsNeighbors(int y, int x)
         {
             Cell[] neighbors = new Cell[4];
-            if (!((x - 1) < 1) && !maze[x - 1, y].getVisited())
+            if ((y - 1 >= 0) && !maze[y - 1, x].getVisited())
             {
-                neighbors[0] = maze[x - 1, y];
+                neighbors[3] = maze[y - 1, x]; //Top wall
             }
-            if (!((y - 1) < 1) && !maze[x, y - 1].getVisited())
+            if ((x - 1 >= 0) && !maze[y, x - 1].getVisited())
             {
-                neighbors[1] = maze[x, y - 1];
+                neighbors[0] = maze[y, x - 1]; //Left wall +
             }
-            if (!((x + 1) > (WIDTH - 1)) && !maze[x + 1, y].getVisited())
+            if ((y + 1 < HEIGHT) && !maze[y + 1, x].getVisited())
             {
-                neighbors[2] = maze[x + 1, y];
+                neighbors[1] = maze[y + 1, x]; //Bottom wall +
             }
-            if (!((y + 1) > (LENGTH - 1)) && !maze[x, y + 1].getVisited())
+            if ((x + 1 < WIDTH) && !maze[y, x + 1].getVisited())
             {
-                neighbors[3] = maze[x, y + 1];
+                neighbors[2] = maze[y, x + 1]; //Right wall
             }
             return neighbors;
         }
@@ -186,31 +186,33 @@ namespace PrimMaze
         {
             if (curr != null)
             {
-                //Returns the cell the pointer is going into
-                //Or the neighboring cell
                 if (location == 0)
                 { //Bust Left
                     curr.setLeft(false);
-                    maze[curr.getX() - 1, curr.getY()].setRight(false);
-                    return maze[curr.getX() - 1, curr.getY()];
+                    maze[curr.getY(), curr.getX()].setLeft(false);
+                    maze[curr.getY(), curr.getX() - 1].setRight(false);
+                    return maze[curr.getY(), curr.getX() - 1];
                 }
                 else if (location == 1)
                 { //Bust Bottom
-                    curr.setTop(false);
-                    maze[curr.getX(), curr.getY() - 1].setBottom(false);
-                    return maze[curr.getX(), curr.getY() - 1];
+                    curr.setBottom(false);
+                    maze[curr.getY(), curr.getX()].setBottom(false);
+                    maze[curr.getY() + 1, curr.getX()].setTop(false);
+                    return maze[curr.getY() + 1, curr.getX()];
                 }
                 else if (location == 2)
                 { //Bust Right
                     curr.setRight(false);
-                    maze[curr.getX() + 1, curr.getY()].setLeft(false);
-                    return maze[curr.getX() + 1, curr.getY()];
+                    maze[curr.getY(), curr.getX()].setRight(false);
+                    maze[curr.getY(), curr.getX() + 1].setLeft(false);
+                    return maze[curr.getY(), curr.getX() + 1];
                 }
                 else if (location == 3)
                 { //Bust Top
-                    curr.setBottom(false);
-                    maze[curr.getX(), curr.getY() + 1].setTop(false);
-                    return maze[curr.getX(), curr.getY() + 1];
+                    curr.setTop(false);
+                    maze[curr.getY(), curr.getX()].setTop(false);
+                    maze[curr.getY() - 1, curr.getX()].setBottom(false);
+                    return maze[curr.getY() - 1, curr.getX()];
                 }
                 curr.setVisited(true);
             }

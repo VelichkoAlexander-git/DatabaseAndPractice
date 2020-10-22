@@ -17,7 +17,7 @@ namespace PrimMaze
         private int x;
         private int y;
 
-        public Cell(int x, int y)
+        public Cell(int y, int x)
         {
             left = true;
             top = true;
