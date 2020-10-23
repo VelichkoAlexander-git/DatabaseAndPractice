@@ -94,7 +94,7 @@
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 11;
             this.btnEdit.TabStop = false;
-            this.btnEdit.Text = "Изменить";
+            this.btnEdit.Text = "Update";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -106,7 +106,7 @@
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.TabStop = false;
-            this.btnDelete.Text = "Удалить";
+            this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -119,7 +119,7 @@
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 9;
             this.btnAdd.TabStop = false;
-            this.btnAdd.Text = "Создать";
+            this.btnAdd.Text = "Create";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -247,7 +247,7 @@
             this.btnEditGrou.Size = new System.Drawing.Size(75, 23);
             this.btnEditGrou.TabIndex = 21;
             this.btnEditGrou.TabStop = false;
-            this.btnEditGrou.Text = "Изменить";
+            this.btnEditGrou.Text = "Update";
             this.btnEditGrou.UseVisualStyleBackColor = true;
             this.btnEditGrou.Click += new System.EventHandler(this.btnEditGrou_Click);
             // 
@@ -259,7 +259,7 @@
             this.btnDeleteGrou.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteGrou.TabIndex = 20;
             this.btnDeleteGrou.TabStop = false;
-            this.btnDeleteGrou.Text = "Удалить";
+            this.btnDeleteGrou.Text = "Delete";
             this.btnDeleteGrou.UseVisualStyleBackColor = true;
             this.btnDeleteGrou.Click += new System.EventHandler(this.btnDeleteGrou_Click);
             // 
@@ -272,7 +272,7 @@
             this.btnAddGrou.Size = new System.Drawing.Size(75, 23);
             this.btnAddGrou.TabIndex = 19;
             this.btnAddGrou.TabStop = false;
-            this.btnAddGrou.Text = "Создать";
+            this.btnAddGrou.Text = "Create";
             this.btnAddGrou.UseVisualStyleBackColor = true;
             this.btnAddGrou.Click += new System.EventHandler(this.btnAddGrou_Click);
             // 
@@ -325,7 +325,7 @@
             this.btnEditIngr.Size = new System.Drawing.Size(75, 23);
             this.btnEditIngr.TabIndex = 15;
             this.btnEditIngr.TabStop = false;
-            this.btnEditIngr.Text = "Изменить";
+            this.btnEditIngr.Text = "Update";
             this.btnEditIngr.UseVisualStyleBackColor = true;
             this.btnEditIngr.Click += new System.EventHandler(this.btnEditIngr_Click);
             // 
@@ -337,7 +337,7 @@
             this.btnDeleteIngr.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteIngr.TabIndex = 13;
             this.btnDeleteIngr.TabStop = false;
-            this.btnDeleteIngr.Text = "Удалить";
+            this.btnDeleteIngr.Text = "Delete";
             this.btnDeleteIngr.UseVisualStyleBackColor = true;
             this.btnDeleteIngr.Click += new System.EventHandler(this.btnDeleteIngr_Click);
             // 
@@ -350,7 +350,7 @@
             this.btnAddIngr.Size = new System.Drawing.Size(75, 23);
             this.btnAddIngr.TabIndex = 12;
             this.btnAddIngr.TabStop = false;
-            this.btnAddIngr.Text = "Создать";
+            this.btnAddIngr.Text = "Create";
             this.btnAddIngr.UseVisualStyleBackColor = true;
             this.btnAddIngr.Click += new System.EventHandler(this.btnAddIngr_Click);
             // 

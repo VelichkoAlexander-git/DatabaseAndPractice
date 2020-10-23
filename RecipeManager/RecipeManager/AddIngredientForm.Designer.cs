@@ -60,7 +60,7 @@
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 8;
-            this.cancelButton.Text = "Отмена";
+            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // acceptButton
@@ -70,7 +70,7 @@
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
             this.acceptButton.TabIndex = 7;
-            this.acceptButton.Text = "Принять";
+            this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             // 
             // AddIngredientForm
