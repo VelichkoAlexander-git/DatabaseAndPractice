@@ -21,6 +21,17 @@ namespace PrimMaze
         public static int height;
         public static int width;
         public static int interval;
+        public static string path
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["Path"];
+            }
+            set
+            {
+                ConfigurationManager.AppSettings["Path"] = value;
+            }
+        }
 
         static Timer timer;
         static void Main(string[] args)
@@ -34,15 +45,10 @@ namespace PrimMaze
             }
 
             Console.OutputEncoding = System.Text.Encoding.GetEncoding(1252);
-
-            string path = @"G:\";
             Maze maze = new Maze(width, height);
 
-            maze.Prims(true);
+            maze.Prims(true); // для моментального решения
             timer = new Timer(new TimerCallback(Drawing), maze, 0, interval);
-
-            SaveArrayInFile(Сonversion(maze), path + "maze.txt");
-            SaveArrayInPNG(Сonversion(maze), path + "maze.png");
             Console.ReadLine();
         }
 
@@ -84,6 +90,9 @@ namespace PrimMaze
             }
 
             mazes.Prims(false);
+
+            SaveArrayInFile(charZame, path + "maze.txt");
+            SaveArrayInPNG(charZame, path + "maze.png");
         }
 
         public static int[,] Сonversion(Maze maze)
