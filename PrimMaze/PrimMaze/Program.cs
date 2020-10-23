@@ -39,12 +39,10 @@ namespace PrimMaze
             Maze maze = new Maze(width, height);
 
             maze.Prims(true);
-            SaveArrayInFile(Сonversion(maze), path + "maze.txt");
-            SaveArrayInPNG(Сonversion(maze), path + "maze.png");
-
-            maze.Restart_Prim();
             timer = new Timer(new TimerCallback(Drawing), maze, 0, interval);
 
+            SaveArrayInFile(Сonversion(maze), path + "maze.txt");
+            SaveArrayInPNG(Сonversion(maze), path + "maze.png");
             Console.ReadLine();
         }
 
@@ -149,13 +147,13 @@ namespace PrimMaze
         {
             int increase = 20;
 
-            Bitmap bmp = new Bitmap(matrix.GetLength(0) * increase, matrix.GetLength(1) * increase, PixelFormat.Format32bppArgb);
+            Bitmap bmp = new Bitmap(matrix.GetLength(1) * increase, matrix.GetLength(0) * increase, PixelFormat.Format32bppArgb);
 
-            for (int x = 0; x < bmp.Width; x++)
+            for (int y = 0; y < bmp.Height; y++)
             {
-                for (int y = 0; y < bmp.Height; y++)
+                for (int x = 0; x < bmp.Width; x++)
                 {
-                    if (matrix[x / increase, y / increase] == 1)
+                    if (matrix[y / increase, x / increase] == 1)
                         bmp.SetPixel(x, y, Color.Black);
                     else
                         bmp.SetPixel(x, y, Color.White);
