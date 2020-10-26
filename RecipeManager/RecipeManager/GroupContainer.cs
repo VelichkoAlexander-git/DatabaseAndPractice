@@ -59,7 +59,7 @@ namespace RecipeManager
         {
 
             if (!_list.Contains(group))
-                if (!_list.Any(i => i.Name == group.Name))
+                if (!_list.Any(i => i.Name.Equals(group.Name, StringComparison.CurrentCultureIgnoreCase)))
                     _list.Add(group);
 
             if (Changed != null) Changed(this, new EventArgs());
@@ -69,7 +69,7 @@ namespace RecipeManager
 
         public GroupContainer Edit(int index, string name)
         {
-            if (!_list.Any(t => t.Name == name))
+            if (!_list.Any(t => t.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase)))
                 _list[index].Name = name;
 
             if (Changed != null) Changed(this, new EventArgs());

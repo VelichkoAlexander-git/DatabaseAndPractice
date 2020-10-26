@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
 namespace RecipeManager
@@ -28,7 +29,7 @@ namespace RecipeManager
 
         protected Recipe(string description, Group group, IngredientContainer ingredients, string recipeSteps)
         {
-            this.Description = description; // this не нужно указывать без явной необходимости (а она довольно редко возникает)
+            Description = description;
             Group = group;
             Ingredients = ingredients;
             RecipeSteps = recipeSteps;
@@ -38,16 +39,18 @@ namespace RecipeManager
         {
             var errors = new List<string>();
 
-            if (group is null) { errors.Add("Рецепт должен содержать группу"); };
-            if (string.IsNullOrEmpty(description)) { errors.Add("Описание не может быть пустым"); }
-            if (string.IsNullOrEmpty(recipeSteps)) { errors.Add("Необходимо указать шаги рецепта"); }
-            if (ingredients.Count() == 0) { errors.Add("Рецепт должен содержать ингредиенты"); }
+            if (group is null) { errors.Add("The recipe must contain a group"); };
+            if (string.IsNullOrEmpty(description)) { errors.Add("Description cannot be empty"); }
+            if (string.IsNullOrEmpty(recipeSteps)) { errors.Add("Recipe steps must be specified"); }
+            if (ingredients.Count() == 0) { errors.Add("The recipe must contain ingredients"); }
 
             if (errors.Any())
             {
                 return Result<Recipe>.Fail(errors);
             }
-            return Result<Recipe>.Success(new Recipe(description, group, ingredients, recipeSteps));
+
+            var context = Regex.Replace(description, @"\s+", " ").Trim();
+            return Result<Recipe>.Success(new Recipe(context, group, ingredients, recipeSteps));
         }
 
         public override string ToString()

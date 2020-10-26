@@ -144,7 +144,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Tag = "";
-            this.columnHeader4.Text = "RecipeSteps";
+            this.columnHeader4.Text = "Recipe Steps";
             this.columnHeader4.Width = 210;
             // 
             // lvIngredientsRecipe

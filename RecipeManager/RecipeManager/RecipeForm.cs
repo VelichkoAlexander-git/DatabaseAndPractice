@@ -87,7 +87,7 @@ namespace RecipeManager
         {
             if (lvAddIngredients.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите хотя бы один эллемент из списка", "Ошибка удаления",
+                MessageBox.Show("Please select at least one item from the list", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -101,7 +101,7 @@ namespace RecipeManager
             var createResult = Recipe.Create(txtDescription.Text, SelectedGroup, _ingredient, txtSteps.Text);
             if (!createResult.Succeeded)
             {
-                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Ошибка создания рецепта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Recipe creation error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

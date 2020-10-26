@@ -162,7 +162,7 @@ namespace RecipeManager
         {
             if (mainListView.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите хотя бы один эллемент из списка", "Ошибка удаления",
+                MessageBox.Show("Please select at least one item from the list", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -176,7 +176,7 @@ namespace RecipeManager
         {
             if (mainListView.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите хотя бы один эллемент из списка", "Ошибка удаления",
+                MessageBox.Show("Please select at least one item from the list", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -223,7 +223,7 @@ namespace RecipeManager
             var createResult = Ingredient.Create(txtNameIngr.Text);
             if (!createResult.Succeeded)
             {
-                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Ошибка создания ингредиента", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Ingredient creation error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -235,7 +235,7 @@ namespace RecipeManager
         {
             if (lvIngredient.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите хотя бы один эллемент из списка", "Ошибка удаления",
+                MessageBox.Show("Please select at least one item from the list", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -248,7 +248,7 @@ namespace RecipeManager
                 }
                 else
                 {
-                    MessageBox.Show("Этот ингредиент находится в рецепте", "Ошибка удаления",
+                    MessageBox.Show("This ingredient is in the recipe", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -260,7 +260,7 @@ namespace RecipeManager
         {
             if (lvIngredient.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите хотя бы один эллемент из списка", "Ошибка удаления",
+                MessageBox.Show("Please select at least one item from the list", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -300,7 +300,7 @@ namespace RecipeManager
             var createResult = Group.Create(txtNameGrou.Text);
             if (!createResult.Succeeded)
             {
-                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Ошибка создания группы", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Join(Environment.NewLine, createResult.Errors), "Group creation error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -312,7 +312,7 @@ namespace RecipeManager
         {
             if (lvGroup.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите хотя бы один эллемент из списка", "Ошибка удаления",
+                MessageBox.Show("Please select at least one item from the list", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -325,7 +325,7 @@ namespace RecipeManager
                 }
                 else
                 {
-                    MessageBox.Show("Эта группа находится в рецепте", "Ошибка удаления",
+                    MessageBox.Show("This group is in the recipe", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -336,7 +336,7 @@ namespace RecipeManager
         {
             if (lvGroup.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите хотя бы один эллемент из списка", "Ошибка удаления",
+                MessageBox.Show("Please select at least one item from the list", "Delete error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -24,13 +25,16 @@ namespace RecipeManager
         {
             var errors = new List<string>();
 
-            if (string.IsNullOrEmpty(name)) { errors.Add("Название не может быть пустым"); }
+            if (string.IsNullOrEmpty(name)) { errors.Add("Title cannot be empty"); }
+
 
             if (errors.Any())
             {
                 return Result<Group>.Fail(errors);
             }
-            return Result<Group>.Success(new Group(name));
+
+            var context = Regex.Replace(name, @"\s+", " ").Trim();
+            return Result<Group>.Success(new Group(context));
         }
         public override string ToString()
         {

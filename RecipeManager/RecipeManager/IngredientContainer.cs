@@ -58,7 +58,7 @@ namespace RecipeManager
         public IngredientContainer Add(Ingredient ingredient)
         {
             if (!_list.Contains(ingredient))
-                if (!_list.Any(i => i.Name == ingredient.Name))
+                if (!_list.Any(i => i.Name.Equals(ingredient.Name, StringComparison.CurrentCultureIgnoreCase)))
                 {
                     _list.Add(ingredient);
                     if (Changed != null) Changed(this, new EventArgs());
@@ -71,7 +71,7 @@ namespace RecipeManager
 
         public IngredientContainer Edit(int index, string name)
         {
-            if (!_list.Any(t => t.Name == name))
+            if (!_list.Any(t => t.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase)))
                 _list[index].Name = name;
 
             if (Changed != null) Changed(this, new EventArgs());
