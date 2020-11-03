@@ -44,17 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Subscribers\Addresses\ContainerAddress.cs" />
-    <Compile Include="Subscribers\Addresses\GroupAddress\ContainerGroupAddress.cs" />
-    <Compile Include="Subscribers\Group\ContainerGroup.cs" />
-    <Compile Include="Subscribers\ContainerSubscriber.cs" />
-    <Compile Include="Subscribers\Addresses\GroupAddress\GroupAddress.cs" />
-    <Compile Include="Subscribers\Phones\GroupPhone\ContainerGroupPhone.cs" />
-    <Compile Include="Subscribers\Phones\GroupPhone\GroupPhone.cs" />
+    <Compile Include="Subscribers\Addresses\GroupAddress.cs" />
+    <Compile Include="Subscribers\Phones\GroupPhone.cs" />
     <Compile Include="Subscribers\Addresses\Address.cs" />
     <Compile Include="Subscribers\Group\Group.cs" />
-    <Compile Include="ObjectStorage.cs" />
-    <Compile Include="Subscribers\Phones\ContainerPhone.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Subscribers\Phones\Phone.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
