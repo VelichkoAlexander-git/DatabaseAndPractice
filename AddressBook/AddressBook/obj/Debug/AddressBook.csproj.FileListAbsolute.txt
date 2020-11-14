@@ -1,7 +1,0 @@
-G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\AddressBook\AddressBook\bin\Debug\AddressBook.exe.config
-G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\AddressBook\AddressBook\bin\Debug\AddressBook.exe
-G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\AddressBook\AddressBook\bin\Debug\AddressBook.pdb
-G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\AddressBook\AddressBook\obj\Debug\AddressBook.csprojAssemblyReference.cache
-G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\AddressBook\AddressBook\obj\Debug\AddressBook.csproj.CoreCompileInputs.cache
-G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\AddressBook\AddressBook\obj\Debug\AddressBook.exe
-G:\Study\Конспекты\4 курс\1 семестр\Практика (Горб Е.А.)\AddressBook\AddressBook\obj\Debug\AddressBook.pdb

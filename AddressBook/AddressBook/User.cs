@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AddressBook
 {
+    // Доделать
     public class User
     {
         #region User
+        private static int id;
         private static string _login;
         private static string _password;
         protected User(string login, string password)
@@ -44,7 +45,6 @@ namespace AddressBook
         {
 
             if (!SubscriberInternal.Contains(subscriber))
-                if (!SubscriberInternal.Any(i => i.Name == subscriber.Name))
                     SubscriberInternal.Add(subscriber);
         }
         public void RemoveSubscriberAt(int index)

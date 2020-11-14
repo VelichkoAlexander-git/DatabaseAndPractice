@@ -1,0 +1,12 @@
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\bin\Debug\AddressBook.dll.config
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\bin\Debug\AddressBook.dll
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\bin\Debug\AddressBook.pdb
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\bin\Debug\EntityFramework.dll
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\bin\Debug\EntityFramework.xml
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\obj\Debug\AddressBookLibrary.csprojAssemblyReference.cache
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\obj\Debug\AddressBookLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\obj\Debug\AddressBookLibrary.csproj.CopyComplete
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\obj\Debug\AddressBook.dll
+C:\Users\Kerman\Desktop\AddressBook\AddressBook\obj\Debug\AddressBook.pdb
