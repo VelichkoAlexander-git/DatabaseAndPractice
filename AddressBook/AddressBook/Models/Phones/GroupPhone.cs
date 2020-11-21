@@ -10,6 +10,11 @@ namespace AddressBook
     {
         public int Id { get; protected set; }
         public string Name { get; protected set; }
+        public int PhoneId { get; protected set; }
+        public virtual Phone Phone { get; protected set; }
+
+        public int UserId { get; protected set; }
+        public virtual User User { get; protected set; }
 
         protected GroupPhone()
         { }

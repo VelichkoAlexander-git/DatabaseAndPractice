@@ -20,11 +20,14 @@ namespace AddressBook
         public string LastName { get; protected set; }
         public Sex Sex { get; protected set; }
         public DateTime? DateOfBirth { get; protected set; }
-        public int[,] Photo { get; protected set; }
+        public byte[] Photo { get; protected set; }
         public string Mail { get; protected set; }
         public IEnumerable<Phone> Phones => PhoneInternal;
         public IEnumerable<Address> Addresses => AddressInternal;
         public IEnumerable<Group> Groups => GroupInternal;
+
+        public int UserId { get; protected set; }
+        public virtual User User { get; protected set; }
 
 
         internal virtual ICollection<Phone> PhoneInternal { get; set; }
@@ -38,7 +41,7 @@ namespace AddressBook
             GroupInternal = new List<Group>();
         }
 
-        public static Result<Subscriber> Create(string firstName, string middleName, string lastName, DateTime? dateOfBirth, Sex sex, string mail)
+        public static Result<Subscriber> Create(string firstName, string middleName, string lastName, DateTime? dateOfBirth, byte[] photo, Sex sex, string mail)
         {
             var errors = new List<string>();
             
@@ -56,6 +59,7 @@ namespace AddressBook
                 MiddleName = middleName,
                 LastName = lastName,
                 DateOfBirth = dateOfBirth,
+                Photo = photo,
                 Sex = sex,
                 Mail = mail
             };

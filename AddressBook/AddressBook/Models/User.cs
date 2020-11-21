@@ -10,13 +10,14 @@ namespace AddressBook
     public class User
     {
         #region User
-        private static int id;
-        private static string _login;
-        private static string _password;
+        public int Id { get; protected set; }
+        public string Login { get; protected set; }
+        public string Password { get; protected set; }
+
         protected User(string login, string password)
         {
-            _login = login;
-            _password = password;
+            Login = login;
+            Password = password;
 
             SubscriberInternal = new List<Subscriber>();
             GroupPhoneInternal = new List<GroupPhone>();
@@ -39,7 +40,7 @@ namespace AddressBook
         #endregion
 
         #region Subscriber
-        protected List<Subscriber> SubscriberInternal { get; set; }
+        internal List<Subscriber> SubscriberInternal { get; set; }
         public IEnumerable<Subscriber> Subscriber => SubscriberInternal;
         public void AddSubscriber(Subscriber subscriber)
         {
@@ -58,7 +59,7 @@ namespace AddressBook
         #endregion
 
         #region GroupAddress
-        protected List<GroupAddress> GroupAddressInternal { get; set; }
+        internal List<GroupAddress> GroupAddressInternal { get; set; }
         public IEnumerable<GroupAddress> GroupAddress => GroupAddressInternal;
         public void AddGroupAddress(GroupAddress groupAddress)
         {
@@ -77,7 +78,7 @@ namespace AddressBook
         #endregion
 
         #region GroupPhone
-        protected List<GroupPhone> GroupPhoneInternal { get; set; }
+        internal List<GroupPhone> GroupPhoneInternal { get; set; }
         public IEnumerable<GroupPhone> GroupPhone => GroupPhoneInternal;
         public void AddGroupPhone(GroupPhone groupPhone)
         {
@@ -96,7 +97,7 @@ namespace AddressBook
         #endregion
 
         #region Group
-        protected List<Group> GroupInternal { get; set; }
+        internal List<Group> GroupInternal { get; set; }
         public IEnumerable<Group> Group => GroupInternal;
         public void AddGroup(Group group)
         {
