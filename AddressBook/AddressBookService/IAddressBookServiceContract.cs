@@ -13,23 +13,57 @@ namespace AddressBookService
     [ServiceContract]
     public interface IAddressBookServiceContract
     {
+        #region User
         [OperationContract]
         bool AddUser(string login, string password);
 
         [OperationContract]
         bool DeleteUser(int id);
+        #endregion
 
+        #region Subscriber
         [OperationContract]
-        bool AddSubscriber(int UserId, string firstName, string middleName, string lastName, DateTime? dateOfBirth, Sex sex, string mail);
-
-        [OperationContract]
-        SubscriberDto GetSubscriber(int UserId, int id);
+        bool AddSubscriber(int UserId, string firstName, string middleName, string lastName, DateTime? dateOfBirth, byte[] photo, Sex sex, string mail);
 
         [OperationContract]
         bool DeleteSubscriber(int UserId, int id);
 
+        [OperationContract]
+        SubscriberDto GetSubscriber(int UserId, int id);
+        #endregion
 
+        #region GroupAddress
+        [OperationContract]
+        bool AddGroupAddress(int UserId, string name);
 
+        [OperationContract]
+        bool DeleteGroupAddress(int UserId, int id);
+
+        [OperationContract]
+        GroupAddressDto GetGroupAddress(int UserId, int id);
+        #endregion
+
+        #region Group
+        [OperationContract]
+        bool AddGroup(int UserId, string name);
+
+        [OperationContract]
+        bool DeleteGroup(int UserId, int id);
+
+        [OperationContract]
+        GroupDto GetGroup(int UserId, int id);
+        #endregion
+
+        #region GroupPhone
+        [OperationContract]
+        bool AddGroupPhone(int UserId, string name);
+
+        [OperationContract]
+        bool DeleteGroupPhone(int UserId, int id);
+
+        [OperationContract]
+        GroupPhoneDto GetGroupPhone(int UserId, int id);
+        #endregion
 
         // TODO: Добавьте здесь операции служб
     }
@@ -116,10 +150,10 @@ namespace AddressBookService
                 Id = user.Id,
                 Login = user.Login,
                 Password = user.Password,
-                Subscriber = (IEnumerable<Subscriber>)user.Subscriber.Select(a => SubscriberDto.Get(a)).ToList(),
-                GroupAddress = (IEnumerable<GroupAddress>)user.GroupAddress.Select(a => GroupAddressDto.Get(a)).ToList(),
-                GroupPhone = (IEnumerable<GroupPhone>)user.GroupPhone.Select(a => GroupPhoneDto.Get(a)).ToList(),
-                Group = (IEnumerable<Group>)user.Group.Select(a => GroupDto.Get(a)).ToList()
+                Subscriber = (IEnumerable<Subscriber>)user.Subscribers.Select(a => SubscriberDto.Get(a)).ToList(),
+                GroupAddress = (IEnumerable<GroupAddress>)user.GroupAddresses.Select(a => GroupAddressDto.Get(a)).ToList(),
+                GroupPhone = (IEnumerable<GroupPhone>)user.GroupPhones.Select(a => GroupPhoneDto.Get(a)).ToList(),
+                Group = (IEnumerable<Group>)user.Groups.Select(a => GroupDto.Get(a)).ToList()
             };
         }
     }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    // Доделать
     public class User
     {
         #region User
@@ -14,11 +13,8 @@ namespace AddressBook
         public string Login { get; protected set; }
         public string Password { get; protected set; }
 
-        protected User(string login, string password)
+        protected User()
         {
-            Login = login;
-            Password = password;
-
             SubscriberInternal = new List<Subscriber>();
             GroupPhoneInternal = new List<GroupPhone>();
             GroupAddressInternal = new List<GroupAddress>();
@@ -35,85 +31,146 @@ namespace AddressBook
             {
                 return Result<User>.Fail(errors);
             }
-            return Result<User>.Success(new User(login, password));
+            var newUser = new User()
+            {
+                Login = login,
+                Password = password
+            };
+
+            return Result<User>.Success(newUser);
         }
         #endregion
 
         #region Subscriber
         internal List<Subscriber> SubscriberInternal { get; set; }
-        public IEnumerable<Subscriber> Subscriber => SubscriberInternal;
-        public void AddSubscriber(Subscriber subscriber)
+        public IEnumerable<Subscriber> Subscribers => SubscriberInternal;
+        public Result<bool> AddSubscriber(string firstName, string middleName, string lastName, DateTime? dateOfBirth, byte[] photo, Sex sex, string mail)
         {
+            var errors = new List<string>();
 
-            if (!SubscriberInternal.Contains(subscriber))
-                    SubscriberInternal.Add(subscriber);
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
+
+            var result = Subscriber.Create(firstName, middleName, lastName, dateOfBirth, photo, sex, mail);
+            SubscriberInternal.Add(result.Value);
+            return Result<bool>.Success(true);
         }
-        public void RemoveSubscriberAt(int index)
+
+        public Result<bool> RemoveSubscriber(Subscriber subscriberToDelete)
         {
-            SubscriberInternal.RemoveAt(index);
+            var errors = new List<string>();
+
+            if (subscriberToDelete is null) errors.Add(nameof(subscriberToDelete));
+
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
+
+            SubscriberInternal.Remove(subscriberToDelete);
+            return Result<bool>.Success(true);
         }
-        public void RemoveSubscriber(Subscriber subscriber)
-        {
-            SubscriberInternal.Remove(subscriber);
-        }
+
+
         #endregion
 
         #region GroupAddress
         internal List<GroupAddress> GroupAddressInternal { get; set; }
-        public IEnumerable<GroupAddress> GroupAddress => GroupAddressInternal;
-        public void AddGroupAddress(GroupAddress groupAddress)
+        public IEnumerable<GroupAddress> GroupAddresses => GroupAddressInternal;
+        public Result<bool> AddGroupAddress(string name)
         {
-            if (!GroupAddressInternal.Contains(groupAddress))
-                if (!GroupAddressInternal.Any(i => i.Name == groupAddress.Name))
-                    GroupAddressInternal.Add(groupAddress);
+            var errors = new List<string>();
+
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
+
+            var result = GroupAddress.Create(name);
+            GroupAddressInternal.Add(result.Value);
+            return Result<bool>.Success(true);
         }
-        public void RemoveGroupAddressAt(int index)
+
+        public Result<bool> RemoveGroupAddress(GroupAddress groupAddressToDelete)
         {
-            GroupAddressInternal.RemoveAt(index);
-        }
-        public void RemoveGroupAddress(GroupAddress groupAddress)
-        {
-            GroupAddressInternal.Remove(groupAddress);
+            var errors = new List<string>();
+
+            if (groupAddressToDelete is null) errors.Add(nameof(groupAddressToDelete));
+
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
+
+            GroupAddressInternal.Remove(groupAddressToDelete);
+            return Result<bool>.Success(true);            
         }
         #endregion
 
         #region GroupPhone
         internal List<GroupPhone> GroupPhoneInternal { get; set; }
-        public IEnumerable<GroupPhone> GroupPhone => GroupPhoneInternal;
-        public void AddGroupPhone(GroupPhone groupPhone)
+        public IEnumerable<GroupPhone> GroupPhones => GroupPhoneInternal;
+        public Result<bool> AddGroupPhone(string name)
         {
-            if (!GroupPhoneInternal.Contains(groupPhone))
-                if (!GroupPhoneInternal.Any(i => i.Name == groupPhone.Name))
-                    GroupPhoneInternal.Add(groupPhone);
+            var errors = new List<string>();
+
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
+
+            var result = GroupPhone.Create(name);
+            GroupPhoneInternal.Add(result.Value);
+            return Result<bool>.Success(true);
         }
-        public void RemoveGroupPhoneAt(int index)
+
+        public Result<bool> RemoveGroupPhone(GroupPhone groupPhoneToDelete)
         {
-            GroupPhoneInternal.RemoveAt(index);
-        }
-        public void RemoveGroupPhone(GroupPhone groupPhone)
-        {
-            GroupPhoneInternal.Remove(groupPhone);
+            var errors = new List<string>();
+
+            if (groupPhoneToDelete is null) errors.Add(nameof(groupPhoneToDelete));
+
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
+
+            GroupPhoneInternal.Remove(groupPhoneToDelete);
+            return Result<bool>.Success(true);            
         }
         #endregion
 
         #region Group
         internal List<Group> GroupInternal { get; set; }
-        public IEnumerable<Group> Group => GroupInternal;
-        public void AddGroup(Group group)
+        public IEnumerable<Group> Groups => GroupInternal;
+        public Result<bool> AddGroup(string name)
         {
+            var errors = new List<string>();
 
-            if (!GroupInternal.Contains(group))
-                if (!GroupInternal.Any(i => i.Name == group.Name))
-                    GroupInternal.Add(group);
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
 
+            var result = Group.Create(name);
+            GroupInternal.Add(result.Value);
+            return Result<bool>.Success(true);
         }
-        public void RemoveGroupAt(int index)
+        public Result<bool> RemoveGroup(Group groupToDelete)
         {
-            GroupInternal.RemoveAt(index);
-        }
-        public void RemoveGroup(Group group)
-        {
-            GroupInternal.Remove(group);
+            var errors = new List<string>();
+
+            if (groupToDelete is null) errors.Add(nameof(groupToDelete));
+
+            if (errors.Any())
+            {
+                return Result<bool>.Fail(errors);
+            }
+
+            GroupInternal.Remove(groupToDelete);
+            return Result<bool>.Success(true);            
         }
         #endregion
     }

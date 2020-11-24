@@ -60,6 +60,7 @@
     <Compile Include="Models\Phones\GroupPhone.cs" />
     <Compile Include="Models\Phones\Phone.cs" />
     <Compile Include="Models\Subscriber.cs" />
+    <Compile Include="Models\SubscriberGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="Models\User.cs" />
