@@ -1,4 +1,7 @@
-﻿namespace AddressBook
+﻿using System.Linq.Expressions;
+using AddressBook.Models;
+
+namespace AddressBook
 {
     using System;
     using System.Data.Entity;
@@ -38,25 +41,27 @@
             modelBuilder.Entity<User>().HasMany(u => u.GroupInternal).WithRequired(s => s.User).HasForeignKey(s => s.UserId);
             modelBuilder.Entity<User>().HasMany(u => u.GroupPhoneInternal).WithRequired(s => s.User).HasForeignKey(s => s.UserId);
 
-            //modelBuilder.Entity<Subscriber>().ToTable("SubscribersTable").HasKey(s => s.Id);
-            //modelBuilder.Entity<GroupPhone>().ToTable("GroupPhonesTable").HasKey(gp => gp.Id);
-            //modelBuilder.Entity<GroupAddress>().ToTable("GroupAddressesTable").HasKey(ga => ga.Id);
-            //modelBuilder.Entity<Group>().ToTable("GroupsTable").HasKey(g => g.Id);
+            modelBuilder.Entity<GroupPhone>().ToTable("GroupPhonesTable").HasKey(gp => gp.Id);
+            modelBuilder.Entity<GroupAddress>().ToTable("GroupAddressesTable").HasKey(ga => ga.Id);
+            modelBuilder.Entity<Group>().ToTable("GroupsTable").HasKey(g => g.Id);
 
             modelBuilder.Entity<Phone>().ToTable("PhoneTable").HasKey(p => p.Id);
+            modelBuilder.Entity<Phone>().HasOptional(a => a.GroupPhone).WithOptionalPrincipal().WillCascadeOnDelete(false);
+            
             modelBuilder.Entity<Address>().ToTable("AddressTable").HasKey(a => a.Id);
+            modelBuilder.Entity<Address>().HasOptional(a => a.GroupAddress).WithOptionalPrincipal().WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<SubscriberGroup>().ToTable("SubscribersGroups").HasKey(sg => new {sg.GroupId, sg.SubscriberId});
+            modelBuilder.Entity<SubscriberGroup>().HasRequired(sg => sg.Subscriber).WithMany(s => s.GroupInternal).WillCascadeOnDelete(false);
+            modelBuilder.Entity<SubscriberGroup>().HasRequired(sg => sg.Group).WithMany(s => s.SubscriberGroups).WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Subscriber>().ToTable("SubscribersTable").HasKey(s => s.Id);
             modelBuilder.Entity<Subscriber>().Ignore(s => s.Addresses);
             modelBuilder.Entity<Subscriber>().Ignore(s => s.Phones);
             modelBuilder.Entity<Subscriber>().Ignore(s => s.Groups);
 
             modelBuilder.Entity<Subscriber>().HasMany(s => s.AddressInternal).WithRequired(o => o.Subscriber).HasForeignKey(o => o.SubscriberId);
             modelBuilder.Entity<Subscriber>().HasMany(s => s.PhoneInternal).WithRequired(o => o.Subscriber).HasForeignKey(o => o.SubscriberId);
-            modelBuilder.Entity<Subscriber>().HasMany(s => s.GroupInternal).WithRequired(o => o.Subscriber).HasForeignKey(o => o.SubscriberId);
-
-            modelBuilder.Entity<Address>().HasRequired(a => a.GroupAddress);
-            modelBuilder.Entity<Phone>().HasRequired(a => a.GroupPhone);
-
         }
 
         public Subscriber GetSubscriber(int UserId, int SubscriberId)

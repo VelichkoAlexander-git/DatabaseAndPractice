@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AddressBook.Models;
 
 namespace AddressBook
 {
@@ -24,7 +25,7 @@ namespace AddressBook
         public string Mail { get; protected set; }
         public IEnumerable<Phone> Phones => PhoneInternal;
         public IEnumerable<Address> Addresses => AddressInternal;
-        public IEnumerable<Group> Groups => GroupInternal;
+        public IEnumerable<Group> Groups => GroupInternal.Select(g => g.Group);
 
         public int UserId { get; protected set; }
         public virtual User User { get; protected set; }
@@ -32,13 +33,13 @@ namespace AddressBook
 
         internal virtual ICollection<Phone> PhoneInternal { get; set; }
         internal virtual ICollection<Address> AddressInternal { get; set; }
-        internal virtual ICollection<Group> GroupInternal { get; set; }
+        internal virtual ICollection<SubscriberGroup> GroupInternal { get; set; }
 
         protected Subscriber()
         {
             PhoneInternal = new List<Phone>();
             AddressInternal = new List<Address>();
-            GroupInternal = new List<Group>();
+            GroupInternal = new List<SubscriberGroup>();
         }
 
         public static Result<Subscriber> Create(string firstName, string middleName, string lastName, DateTime? dateOfBirth, byte[] photo, Sex sex, string mail)
@@ -141,7 +142,7 @@ namespace AddressBook
             }
 
             var result = Group.Create(name);
-            GroupInternal.Add(result.Value);
+            //GroupInternal.Add(result.Value);
             return Result<bool>.Success(true);
         }
         public Result<bool> RemoveGroup(Group groupToDelete)
@@ -156,7 +157,7 @@ namespace AddressBook
                 return Result<bool>.Fail(errors);
             }
 
-            GroupInternal.Remove(groupToDelete);
+            //GroupInternal.Remove(groupToDelete);
             return Result<bool>.Success(true);
         }
 
