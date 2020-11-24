@@ -66,13 +66,26 @@ namespace AddressBook
 
         public Subscriber GetSubscriber(int UserId, int SubscriberId)
         {
-            var subscriber = Users.Find(UserId).SubscriberInternal.ElementAt(SubscriberId);
+            var subscriber = Users.Find(UserId).SubscriberInternal.ToList().Find(s => s.Id == SubscriberId);
             Entry(subscriber).Collection(s => s.AddressInternal).Load();
             Entry(subscriber).Collection(s => s.PhoneInternal).Load();
             Entry(subscriber).Collection(s => s.GroupInternal).Load();
             return subscriber;
         }
 
+        public User GetUser(int id)
+        {
+            var user = Users.Find(id);
+            if (user != null)
+            {
+                Entry(user).Collection(s => s.SubscriberInternal).Load();
+                Entry(user).Collection(s => s.GroupAddressInternal).Load();
+                Entry(user).Collection(s => s.GroupInternal).Load();
+                Entry(user).Collection(s => s.GroupPhoneInternal).Load();
+                return user;
+            }
+            return null;
+        }
     }
 
     //public class MyEntity

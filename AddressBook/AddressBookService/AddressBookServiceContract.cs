@@ -32,10 +32,10 @@ namespace AddressBookService
         public bool DeleteUser(int id)
         {
             var context = new AddressBookContext();
-            var customer = context.Users.Find(id);
-            if (customer != null)
+            var user = context.GetUser(id);
+            if (user != null)
             {
-                context.Users.Remove(customer);
+                context.Users.Remove(user);
                 context.SaveChanges();
                 return true;
             }
@@ -49,7 +49,7 @@ namespace AddressBookService
         public bool AddSubscriber(int UserId, string firstName, string middleName, string lastName, DateTime? dateOfBirth, byte[] photo, Sex sex, string mail)
         {
             var context = new AddressBookContext();
-            var user = context.Users.First(u => u.Id == UserId);
+            var user = context.GetUser(UserId);
             if (user != null)
             {               
                 user.AddSubscriber(firstName, middleName, lastName, dateOfBirth, photo, sex, mail);
@@ -64,7 +64,7 @@ namespace AddressBookService
         public bool DeleteSubscriber(int UserId, int id)
         {
             var context = new AddressBookContext();
-            var user = context.Users.Find(UserId);
+            var user = context.GetUser(UserId);
             if (user != null)
             {
                 var subscriber = user.Subscribers.ToList().Find(s => s.Id == id);
@@ -81,8 +81,16 @@ namespace AddressBookService
         public SubscriberDto GetSubscriber(int UserId, int id)
         {
             var context = new AddressBookContext();
-            var subscriber = context.Users.Find(UserId).Subscribers.ToList().First(s => s.Id == id);
-            return SubscriberDto.Get(subscriber);
+            var user = context.GetUser(UserId);
+            if (user != null)
+            {
+                var subscriber = user.Subscribers.ToList().Find(s => s.Id == id);
+                if (subscriber != null)
+                {
+                    return SubscriberDto.Get(subscriber);
+                }
+            }
+            return null;
         }
         #endregion
 
@@ -91,7 +99,7 @@ namespace AddressBookService
         public bool AddGroupAddress(int UserId, string name)
         {
             var context = new AddressBookContext();
-            var user = context.Users.First(u => u.Id == UserId);
+            var user = context.GetUser(UserId);
             if (user != null)
             {
                 user.AddGroupAddress(name);
@@ -106,12 +114,12 @@ namespace AddressBookService
         public bool DeleteGroupAddress(int UserId, int id)
         {
             var context = new AddressBookContext();
-            var user = context.Users.Find(UserId);
+            var user = context.GetUser(UserId);
             if (user != null)
             {
                 var groupAddress = user.GroupAddresses.ToList().Find(s => s.Id == id);
                 if (groupAddress != null)
-                    user.RemoveGroupAddress(groupAddress);
+                   user.RemoveGroupAddress(groupAddress);
                 context.SaveChanges();
                 return true;
             }
@@ -123,8 +131,16 @@ namespace AddressBookService
         public GroupAddressDto GetGroupAddress(int UserId, int id)
         {
             var context = new AddressBookContext();
-            var groupAddress = context.Users.Find(UserId).GroupAddresses.ToList().First(s => s.Id == id);
-            return GroupAddressDto.Get(groupAddress);
+            var user = context.GetUser(UserId);
+            if (user != null)
+            {
+                var groupAddress = user.GroupAddresses.ToList().Find(s => s.Id == id);
+                if (groupAddress != null)
+                {
+                    return GroupAddressDto.Get(groupAddress);
+                }
+            }
+            return null;
         }
         #endregion
 
@@ -133,7 +149,7 @@ namespace AddressBookService
         public bool AddGroup(int UserId, string name)
         {
             var context = new AddressBookContext();
-            var user = context.Users.First(u => u.Id == UserId);
+            var user = context.GetUser(UserId);
             if (user != null)
             {
                 user.AddGroup(name);
@@ -148,7 +164,7 @@ namespace AddressBookService
         public bool DeleteGroup(int UserId, int id)
         {
             var context = new AddressBookContext();
-            var user = context.Users.Find(UserId);
+            var user = context.GetUser(UserId);
             if (user != null)
             {
                 var group = user.Groups.ToList().Find(s => s.Id == id);
@@ -165,8 +181,16 @@ namespace AddressBookService
         public GroupDto GetGroup(int UserId, int id)
         {
             var context = new AddressBookContext();
-            var group = context.Users.Find(UserId).Groups.ToList().First(s => s.Id == id);
-            return GroupDto.Get(group);
+            var user = context.GetUser(UserId);
+            if (user != null)
+            {
+                var group = user.Groups.ToList().Find(s => s.Id == id);
+                if (group != null)
+                {
+                    return GroupDto.Get(group);
+                }
+            }
+            return null;
         }
         #endregion
 
@@ -175,7 +199,7 @@ namespace AddressBookService
         public bool AddGroupPhone(int UserId, string name)
         {
             var context = new AddressBookContext();
-            var user = context.Users.First(u => u.Id == UserId);
+            var user = context.GetUser(UserId);
             if (user != null)
             {
                 user.AddGroupPhone(name);
@@ -190,14 +214,17 @@ namespace AddressBookService
         public bool DeleteGroupPhone(int UserId, int id)
         {
             var context = new AddressBookContext();
-            var user = context.Users.Find(UserId);
+            var user = context.GetUser(UserId);
             if (user != null)
             {
                 var groupPhone = user.GroupPhones.ToList().Find(s => s.Id == id);
                 if (groupPhone != null)
+                {
                     user.RemoveGroupPhone(groupPhone);
-                context.SaveChanges();
-                return true;
+                    context.SaveChanges();
+                    return true;
+                }
+
             }
 
             return false;
@@ -207,8 +234,16 @@ namespace AddressBookService
         public GroupPhoneDto GetGroupPhone(int UserId, int id)
         {
             var context = new AddressBookContext();
-            var groupPhone = context.Users.Find(UserId).GroupPhones.ToList().First(s => s.Id == id);
-            return GroupPhoneDto.Get(groupPhone);
+            var user = context.GetUser(UserId);
+            if (user != null)
+            {
+                var groupPhone = user.GroupPhones.ToList().Find(s => s.Id == id);
+                if (groupPhone != null)
+                {
+                    return GroupPhoneDto.Get(groupPhone);
+                }
+            }
+            return null;
         }
         #endregion
     }
