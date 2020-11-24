@@ -1,14 +1,12 @@
 ﻿using System.Linq.Expressions;
 using AddressBook.Models;
 
-namespace AddressBook
-{
+namespace AddressBook {
     using System;
     using System.Data.Entity;
     using System.Linq;
 
-    public class AddressBookContext : DbContext
-    {
+    public class AddressBookContext : DbContext {
         // Контекст настроен для использования строки подключения "AddressBookContext" из файла конфигурации  
         // приложения (App.config или Web.config). По умолчанию эта строка подключения указывает на базу данных 
         // "AddressBook.AddressBookContext" в экземпляре LocalDb. 
@@ -16,13 +14,12 @@ namespace AddressBook
         // Если требуется выбрать другую базу данных или поставщик базы данных, измените строку подключения "AddressBookContext" 
         // в файле конфигурации приложения.
         public AddressBookContext()
-            : base("name=AddressBookContext")
-        {
+            : base("name=AddressBookContext") {
             Database.CreateIfNotExists();
         }
         public virtual DbSet<User> Users { get; set; }
         //public virtual DbSet<Subscriber> Subscribers { get; set; }
-        //public virtual DbSet<GroupPhone> GroupPhones { get; set; }
+        public virtual DbSet<GroupPhone> GroupPhones { get; set; }
         //public virtual DbSet<GroupAddress> GroupAddresses { get; set; }
         //public virtual DbSet<Group> Groups { get; set; }
 
@@ -31,8 +28,7 @@ namespace AddressBook
         // о настройке и использовании модели Code First см. в статье http://go.microsoft.com/fwlink/?LinkId=390109.
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().ToTable("UsersTable").HasKey(u => u.Id);
@@ -46,12 +42,12 @@ namespace AddressBook
             modelBuilder.Entity<Group>().ToTable("GroupsTable").HasKey(g => g.Id);
 
             modelBuilder.Entity<Phone>().ToTable("PhoneTable").HasKey(p => p.Id);
-            modelBuilder.Entity<Phone>().HasOptional(a => a.GroupPhone).WithOptionalPrincipal().WillCascadeOnDelete(false);
-            
-            modelBuilder.Entity<Address>().ToTable("AddressTable").HasKey(a => a.Id);
-            modelBuilder.Entity<Address>().HasOptional(a => a.GroupAddress).WithOptionalPrincipal().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Phone>().HasOptional(a => a.GroupPhone).WithMany().HasForeignKey(ph => ph.GroupPhoneId).WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<SubscriberGroup>().ToTable("SubscribersGroups").HasKey(sg => new {sg.GroupId, sg.SubscriberId});
+            modelBuilder.Entity<Address>().ToTable("AddressTable").HasKey(a => a.Id);
+            modelBuilder.Entity<Address>().HasOptional(a => a.GroupAddress).WithMany().HasForeignKey(a => a.GroupAddressId).WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SubscriberGroup>().ToTable("SubscribersGroups").HasKey(sg => new { sg.GroupId, sg.SubscriberId });
             modelBuilder.Entity<SubscriberGroup>().HasRequired(sg => sg.Subscriber).WithMany(s => s.GroupInternal).WillCascadeOnDelete(false);
             modelBuilder.Entity<SubscriberGroup>().HasRequired(sg => sg.Group).WithMany(s => s.SubscriberGroups).WillCascadeOnDelete(false);
 
@@ -64,8 +60,7 @@ namespace AddressBook
             modelBuilder.Entity<Subscriber>().HasMany(s => s.PhoneInternal).WithRequired(o => o.Subscriber).HasForeignKey(o => o.SubscriberId);
         }
 
-        public Subscriber GetSubscriber(int UserId, int SubscriberId)
-        {
+        public Subscriber GetSubscriber(int UserId, int SubscriberId) {
             var subscriber = Users.Find(UserId).SubscriberInternal.ToList().Find(s => s.Id == SubscriberId);
             Entry(subscriber).Collection(s => s.AddressInternal).Load();
             Entry(subscriber).Collection(s => s.PhoneInternal).Load();
@@ -73,11 +68,9 @@ namespace AddressBook
             return subscriber;
         }
 
-        public User GetUser(int id)
-        {
+        public User GetUser(int id) {
             var user = Users.Find(id);
-            if (user != null)
-            {
+            if (user != null) {
                 Entry(user).Collection(s => s.SubscriberInternal).Load();
                 Entry(user).Collection(s => s.GroupAddressInternal).Load();
                 Entry(user).Collection(s => s.GroupInternal).Load();

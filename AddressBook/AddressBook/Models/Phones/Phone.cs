@@ -9,7 +9,7 @@ namespace AddressBook
     public class Phone
     {
         public int Id { get; protected set; }
-        public int GroupPhoneId { get; protected set; }
+        public int? GroupPhoneId { get; protected set; }
         public virtual GroupPhone GroupPhone { get; protected set; }
         public int SubscriberId { get; protected set; }
         public virtual Subscriber Subscriber { get; protected set; }

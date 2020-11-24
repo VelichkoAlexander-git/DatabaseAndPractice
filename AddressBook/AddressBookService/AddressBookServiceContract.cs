@@ -221,6 +221,7 @@ namespace AddressBookService
                 if (groupPhone != null)
                 {
                     user.RemoveGroupPhone(groupPhone);
+                    //context.GroupPhones.Remove(groupPhone);
                     context.SaveChanges();
                     return true;
                 }

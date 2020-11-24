@@ -89,7 +89,7 @@ namespace AddressBookService
             {
                 Id = phone.Id,
                 Number = phone.Number,
-                GroupPhoneId = phone.GroupPhoneId
+                //GroupPhoneId = phone.GroupPhoneId
             };
         }
     }
@@ -113,7 +113,7 @@ namespace AddressBookService
             {
                 Id = address.Id,
                 Information = address.Information,
-                GroupAddressId = address.GroupAddressId
+                //GroupAddressId = address.GroupAddressId
             };
         }
     }
