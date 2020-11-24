@@ -87,7 +87,7 @@ namespace AddressBookService
         #endregion
 
         #region GroupAddress
-        [WebInvoke(Method = "POST", UriTemplate = "User/{Userid}/AddGroupAddressr")]
+        [WebInvoke(Method = "POST", UriTemplate = "User/{Userid}/AddGroupAddress")]
         public bool AddGroupAddress(int UserId, string name)
         {
             var context = new AddressBookContext();
@@ -129,7 +129,7 @@ namespace AddressBookService
         #endregion
 
         #region Group
-        [WebInvoke(Method = "POST", UriTemplate = "User/{Userid}/AddGroupAddressr")]
+        [WebInvoke(Method = "POST", UriTemplate = "User/{Userid}/AddGroup")]
         public bool AddGroup(int UserId, string name)
         {
             var context = new AddressBookContext();
@@ -144,7 +144,7 @@ namespace AddressBookService
             return false;
         }
 
-        [WebInvoke(Method = "POST", UriTemplate = "User/{UserId}/DeleteGroupAddress/{id}")]
+        [WebInvoke(Method = "POST", UriTemplate = "User/{UserId}/DeleteGroup/{id}")]
         public bool DeleteGroup(int UserId, int id)
         {
             var context = new AddressBookContext();
@@ -161,7 +161,7 @@ namespace AddressBookService
             return false;
         }
 
-        [WebInvoke(Method = "GET", UriTemplate = "User/{UserId}/GroupAddress/{id}")]
+        [WebInvoke(Method = "GET", UriTemplate = "User/{UserId}/Group/{id}")]
         public GroupDto GetGroup(int UserId, int id)
         {
             var context = new AddressBookContext();
@@ -171,7 +171,7 @@ namespace AddressBookService
         #endregion
 
         #region GroupPhone
-        [WebInvoke(Method = "POST", UriTemplate = "User/{Userid}/AddGroupAddressr")]
+        [WebInvoke(Method = "POST", UriTemplate = "User/{Userid}/AddGroupPhone")]
         public bool AddGroupPhone(int UserId, string name)
         {
             var context = new AddressBookContext();
@@ -186,7 +186,7 @@ namespace AddressBookService
             return false;
         }
 
-        [WebInvoke(Method = "POST", UriTemplate = "User/{UserId}/DeleteGroupAddress/{id}")]
+        [WebInvoke(Method = "POST", UriTemplate = "User/{UserId}/DeleteGroupPhone/{id}")]
         public bool DeleteGroupPhone(int UserId, int id)
         {
             var context = new AddressBookContext();
@@ -203,7 +203,7 @@ namespace AddressBookService
             return false;
         }
 
-        [WebInvoke(Method = "GET", UriTemplate = "User/{UserId}/GroupAddress/{id}")]
+        [WebInvoke(Method = "GET", UriTemplate = "User/{UserId}/GroupPhone/{id}")]
         public GroupPhoneDto GetGroupPhone(int UserId, int id)
         {
             var context = new AddressBookContext();
