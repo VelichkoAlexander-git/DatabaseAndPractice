@@ -1,7 +1,0 @@
-C:\Users\Kerman\Desktop\AddressBook\AddressBookClient\bin\Debug\AddressBookClient.exe.config
-C:\Users\Kerman\Desktop\AddressBook\AddressBookClient\bin\Debug\AddressBookClient.exe
-C:\Users\Kerman\Desktop\AddressBook\AddressBookClient\bin\Debug\AddressBookClient.pdb
-C:\Users\Kerman\Desktop\AddressBook\AddressBookClient\obj\Debug\AddressBookClient.csprojAssemblyReference.cache
-C:\Users\Kerman\Desktop\AddressBook\AddressBookClient\obj\Debug\AddressBookClient.csproj.CoreCompileInputs.cache
-C:\Users\Kerman\Desktop\AddressBook\AddressBookClient\obj\Debug\AddressBookClient.exe
-C:\Users\Kerman\Desktop\AddressBook\AddressBookClient\obj\Debug\AddressBookClient.pdb
